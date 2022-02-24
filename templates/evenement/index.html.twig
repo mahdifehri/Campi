@@ -1,0 +1,81 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Evenements{% endblock %}
+
+{% block body %}
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Evénements</p>
+                        <h1>Campi</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- latest news -->
+    <div class="latest-news mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+    {% for evenement in evenements %}
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="{{ path('evenement_show', {"id": evenement.id}) }}">
+                            <img src="{{ evenement.image }}" alt=" {{ evenement.image }}">
+                            <!--<div class="latest-news-bg news-bg-1"></div> --></a>
+                        <div class="news-text-box">
+                            {% if evenement.nbrParticipants  == 0 %}
+                                <div style="float: right;"><h3>0/{{ evenement.nbrParticipantsMax }}</h3></div>
+                            {% else %}
+                                <div style="float: right;"><h3>{{ evenement.nbrParticipants }}/{{ evenement.nbrParticipantsMax }}</h3></div>
+                            {% endif %}
+
+                            <h3><a href="{{ path('evenement_show', {"id": evenement.id}) }}">{{ evenement.destination }}. </a></h3>
+
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> {{ evenement.date |date("d/m/Y") }}</span>
+                            </p>
+                            {% if evenement.prix == 0 %}
+                                <div><h6>Frais de participation : Gratuit</h6></div>
+
+                            {% else %}
+                                <div><h6>Frais de participation : {{ evenement.prix}} dt</h6></div>
+                            {% endif %}
+
+                            <p class="excerpt">{{ evenement.description }}</p>
+                            <a href="{{ path('evenement_show', {"id": evenement.id}) }}" class="read-more-btn">En savoir plus <i class="fas fa-angle-right"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+    {% endfor%}
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination-wrap">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li><a class="active" href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end latest news -->
+
+{% endblock %}

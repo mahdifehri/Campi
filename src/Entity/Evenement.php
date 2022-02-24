@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -23,7 +26,7 @@ class Evenement
     private $id_user;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -34,11 +37,13 @@ class Evenement
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="la date est necessaire")
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="la destination est necessaire")
      */
     private $destination;
 
@@ -54,6 +59,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="le nombre de particapants est necessaire")
      */
     private $nbr_participants_max;
 
@@ -61,6 +67,17 @@ class Evenement
      * @ORM\Column(type="integer", nullable=true)
      */
     private $etat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="evenements")
+     */
+    private $participants;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -84,7 +101,7 @@ class Evenement
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -174,4 +191,36 @@ class Evenement
 
         return $this;
     }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->setEvenements($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->removeElement($participant)) {
+            // set the owning side to null (unless already changed)
+            if ($participant->getEvenements() === $this) {
+                $participant->setEvenements(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

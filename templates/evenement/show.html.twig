@@ -1,0 +1,199 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}{{ evenement.destination }}{% endblock %}
+
+{% block body %}
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Read the Details</p>
+                        <h1>Single Article</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- single article section -->
+    <div class="mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="single-article-section">
+                        <div class="single-article-text">
+                            <div class="single-artcile-bg">
+                                <figure><img src="{{ evenement.image }}" alt=" {{ evenement.image }}"></figure>
+
+                            </div>
+                            <div>.</div>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> {{ evenement.date |date("d/m/Y") }}</span>
+                            </p>
+                            {% if evenement.nbrParticipants  == 0 %}
+                            <div style="float: right;"><h3>0/{{ evenement.nbrParticipantsMax }}</h3></div>
+                            {% else %}
+                            <div style="float: right;"><h3>{{ evenement.nbrParticipants }}/{{ evenement.nbrParticipantsMax }}</h3></div>
+                            {% endif %}
+                            <h2>{{ evenement.destination }}</h2>
+                            {% if evenement.prix == 0 %}
+                                <div><h6>Frais de participation : Gratuit</h6></div>
+
+                            {% else %}
+                                <div><h6>Frais de participation : {{ evenement.prix}} dt</h6></div>
+                            {% endif %}
+                            <p>{{ evenement.description }}</p>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar-section">
+                        <div class="recent-posts">
+                            <h4>Participants</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th> Nom </th>
+                                    <th> Prenom </th>
+                                    <th> Numero </th>
+                                    <th> Supprimer </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for participant in participants %}
+                                    <tr>
+                                         {% if  evenement.id == participant.evenements.id %}
+                                        <td> {{ participant.nom }} </td>
+                                        <td> {{ participant.prenom }} </td>
+                                        <td> {{ participant.numeroTelephone }} </td>
+                                        <td class="product-remove"><a href="{{ path('participant_delete', {"id": participant.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                         {% endif %}
+
+                                    </tr>
+                                {% endfor%}
+
+
+
+                                </tbody>
+
+                            </table>
+
+                            <div class="open-btn">
+                                <button class="btn btn-success" onclick="openForm()"><strong>Participer</strong></button>
+                            </div>
+
+                            <div class="login-popup">
+                                <div class="form-popup" id="popupForm">
+                                    <div class="form-container">
+                                    {{ form_start(formparticipant,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                                    {{ include('evenement/_formparticipant.html.twig') }}
+                                    <!-- <button type="submit" class="btn btn-success">Submit</button>
+                                    <button class="btn btn-dark">Cancel</button>
+                                    <input type="submit" value="Ajouter" class="btn btn-success" style="float: right;">-->
+
+
+                                    <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                                        <button type="submit" class="btn btn-success"  >Ajouter </button>
+
+                                    {{ form_rest(formparticipant) }}
+                                    {{ form_end(formparticipant) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function openForm() {
+                                    document.getElementById("popupForm").style.display = "block";
+                                }
+
+                                function closeForm() {
+                                    document.getElementById("popupForm").style.display = "none";
+                                }
+                            </script>
+                            <style>
+                                * {
+                                    box-sizing: border-box;
+                                }
+
+
+                                /* Positionnez la forme Popup */
+                                .login-popup {
+                                    position: relative;
+                                    text-align: center;
+                                    width: 100%;
+                                }
+                                /* Masquez la forme Popup */
+                                .form-popup {
+                                    display: none;
+                                    position: fixed;
+                                    left: 50%;
+                                    top: 15%;
+                                    transform: translate(-50%, 15%);
+                                    border: 2px solid #666;
+                                    z-index: 9;
+
+                                }
+                                /* Styles pour le conteneur de la forme */
+                                .form-container {
+                                    max-width: 300px;
+                                    padding: 20px;
+                                    background-color: #fff;
+                                }
+                                /* Largeur complète pour les champs de saisie */
+                                .form-container input[type="text"],
+                                .form-container input[type="password"] {
+                                    width: 100%;
+                                    padding: 10px;
+                                    margin: 5px 0 22px 0;
+                                    border: none;
+                                    background: #eee;
+                                }
+                                /* Quand les entrées sont concentrées, faites quelque chose */
+                                .form-container input[type="text"]:focus,
+                                .form-container input[type="password"]:focus {
+                                    background-color: #ddd;
+                                    outline: none;
+                                }
+                                /* Stylez le bouton de connexion */
+                                .form-container .btn {
+                                    background-color: #8ebf42;
+                                    color: #fff;
+                                    padding: 12px 20px;
+                                    border: none;
+                                    cursor: pointer;
+                                    width: 100%;
+                                    margin-bottom: 10px;
+                                    opacity: 0.8;
+                                }
+                                /* Stylez le bouton pour annuler */
+                                .form-container .cancel {
+                                    background-color: #cc0000;
+                                }
+                                /* Planez les effets pour les boutons */
+                                .form-container .btn:hover,
+                                .open-button:hover {
+                                    opacity: 1;
+                                }
+                            </style>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end single article section -->
+{% endblock %}

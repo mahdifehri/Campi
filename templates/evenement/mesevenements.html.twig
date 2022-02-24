@@ -1,0 +1,158 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Mes événements{% endblock %}
+
+{% block body %}
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Mes événements</p>
+                        <h1>Campi</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+    <div class="checkout-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="checkout-accordion-wrap">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Ajouter Un événement
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="billing-address-form">
+
+                                                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                                            {{ include('evenement/_form.html.twig') }}
+                                            <!-- <button type="submit" class="btn btn-success">Submit</button>
+                                            <button class="btn btn-dark">Cancel</button>-->
+                                            <input type="submit" value="Ajouter" style="float: right;">
+
+
+                                                {{ form_rest(form) }}
+                                                {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Supprimer Un événement
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shipping-address-form">
+                                            <div class="cart-table-wrap">
+                                                <table class="cart-table">
+                                                    <thead class="cart-table-head">
+                                                    <tr class="table-head-row">
+                                                        <th class="product-remove"> Supprimer</th>
+                                                        <th class="product-image">Description</th>
+                                                        <th class="product-name">Destination</th>
+                                                        <th class="product-price">Prix</th>
+                                                        <th class="product-quantity">Nombre de participants</th>
+                                                        <th class="product-total">Etat</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for evenement in evenements %}
+                                                    <tr class="table-body-row">
+                                                        <td class="product-remove"><a href="{{ path('evenement_delete', {"id": evenement.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                                        <td class="text-sm-center">{{ evenement.description }}</td>
+                                                        <td class="product-name">{{ evenement.destination }}</td>
+                                                        <td class="product-price">{{ evenement.prix }}</td>
+                                                        <td class="product-quantity">{{ evenement.nbrParticipantsMax }}</td>
+                                                        {% if evenement.etat == 0 %}
+                                                            <td><label class="badge badge-warning">En cours</label></td>
+                                                        {% elseif evenement.etat == 1 %}
+                                                            <td><label class="badge badge-success">validé</label></td>
+                                                        {% else %}
+                                                            <td><label class="badge badge-danger">Refusé</label></td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% endfor%}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card single-accordion">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Modifier Un événement
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="card-details">
+                                            <div class="shipping-address-form">
+                                                <div class="cart-table-wrap">
+                                                    <table class="cart-table">
+                                                        <thead class="cart-table-head">
+                                                        <tr class="table-head-row">
+                                                            <th class="product-remove">Modifier</th>
+                                                            <th class="product-image">Description</th>
+                                                            <th class="product-name">Destination</th>
+                                                            <th class="product-price">Prix</th>
+                                                            <th class="product-quantity">Nombre de participants</th>
+                                                            <th class="product-total">Etat</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for evenement in evenements %}
+                                                            <tr class="table-body-row">
+                                                                <td class="product-remove"><a href="{{ path('evenement_edit', {"id": evenement.id}) }}" ><i class="fas fa-edit"></i></a></td>
+                                                                <td class="product-image">{{ evenement.description }}</td>
+                                                                <td class="product-name">{{ evenement.destination }}</td>
+                                                                <td class="product-price">{{ evenement.prix }}</td>
+                                                                <td class="product-quantity">{{ evenement.nbrParticipantsMax }}</td>
+                                                                {% if evenement.etat == 0 %}
+                                                                    <td><label class="badge badge-warning">En cours</label></td>
+                                                                {% elseif evenement.etat == 1 %}
+                                                                    <td><label class="badge badge-success">validé</label></td>
+                                                                {% else %}
+                                                                    <td><label class="badge badge-danger">Refusé</label></td>
+                                                                {% endif %}
+                                                            </tr>
+                                                        {% endfor%}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
