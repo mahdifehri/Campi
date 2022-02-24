@@ -1,0 +1,39 @@
+<div class="container text-center">
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label>Nom du region: </label>
+        {{ form_widget(form.nom_reg) }}
+        {% if not form.nom_reg.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nom_reg) }}
+            </div>
+        {% endif %}
+
+        <label>Localisation: </label>
+        {{ form_widget(form.localisation_reg) }}
+        {% if not form.localisation_reg.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.localisation_reg) }}
+            </div>
+        {% endif %}
+
+        <label>Nombre de participants: </label>
+        {{ form_widget(form.nbr_participants_reg) }}
+        {% if not form.nbr_participants_reg.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nbr_participants_reg) }}
+            </div>
+        {% endif %}
+
+        <label>Nombre d'evenemments: </label>
+        {{ form_widget(form.nbr_event_reg) }}
+        {% if not form.nbr_event_reg.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nbr_event_reg) }}
+            </div>
+        {% endif %}
+
+        <button type="submit" value="save" class="btn btn-primary" style="text-align: center">{{ button_label|default('Ajouter') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
