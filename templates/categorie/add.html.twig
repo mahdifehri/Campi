@@ -1,0 +1,14 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Ajouter Categorie {% endblock %}
+
+{% block body %}
+
+    <h1>Ajouter une categorie </h1>
+
+    {{ form_start(form) }}
+
+    {{ include('categorie/_form.html.twig') }}
+
+    {{ form_end(form) }}
+{% endblock %}

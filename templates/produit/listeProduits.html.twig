@@ -1,0 +1,63 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="card-body">
+        <h4 class="card-title">Liste Des Produits</h4>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Nom Produit </th>
+                    <th> Designation </th>
+                    <th> Quantité</th>
+                    <th> Prix </th>
+                    <th> Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for produit in produits %}
+                <tr>
+                    <td class="py-1">
+                        {{ produit.id }}
+                    </td>
+                    <td> {{ produit.nom }} </td>
+                    <td>  {{ produit.designation }}</td>
+                    <td> {{ produit.quantite }}</td>
+                    <td> {{ produit.prix}} </td>
+                 <td>
+                      <a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
+                        <a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer</a>
+                        <a href="{{ path('produit_add') }}">Ajouter</a>
+                 </td>
+
+
+
+
+
+                </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

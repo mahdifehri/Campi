@@ -1,0 +1,16 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Editer Categorie {% endblock %}
+
+{% block body %}
+
+    <h1>Editer Categorie </h1>
+
+    {{ form_start(form) }}
+
+    {{ include('categorie/_form.html.twig') }}
+    <button class="btn btn-primary">
+        Editer
+    </button>
+    {{ form_end(form) }}
+{% endblock %}
