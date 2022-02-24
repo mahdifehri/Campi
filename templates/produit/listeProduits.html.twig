@@ -21,6 +21,7 @@
                     <th> Quantité</th>
                     <th> Prix </th>
                     <th> Action</th>
+                    <th> Image </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,11 +34,13 @@
                     <td>  {{ produit.designation }}</td>
                     <td> {{ produit.quantite }}</td>
                     <td> {{ produit.prix}} </td>
-                 <td>
-                      <a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
+                    <td>
+                        <a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
                         <a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer</a>
                         <a href="{{ path('produit_add') }}">Ajouter</a>
-                 </td>
+                    </td>
+
+                    <td> <img src="{{ asset('assets/' ~ produit.image) }}"> </td>
 
 
 

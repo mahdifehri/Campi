@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  */
@@ -22,14 +23,17 @@ class Produit
     private $id;
 
     /**
+     *
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\Range(min=7)
      */
     private $designation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+
      */
+
     private $quantite;
 
     /**
@@ -43,6 +47,7 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Nom is required")
      */
     private $image;
 

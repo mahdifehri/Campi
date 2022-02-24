@@ -47,7 +47,7 @@ class ProduitController extends AbstractController
             $em->persist($produit);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('front');
 
         }
         return $this->render('produit/add.html.twig', [
