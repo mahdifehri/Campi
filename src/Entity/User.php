@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -18,36 +20,55 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255 , unique=true)
      */
     private $nom;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 20,
      */
     private $motpasse;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      max = 8,
      */
     private $numero_telephone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=1)
+     * @Assert\EqualTo(
+     *     value = "a"
+     * )
+     * @Assert\Length(max=1)
      */
     private $role;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $photoUser;
@@ -134,7 +155,7 @@ class User
         return $this->photoUser;
     }
 
-    public function setPhotoUser(string $photoUser): self
+    public function setPhotoUser($photoUser): self
     {
         $this->photoUser = $photoUser;
 
