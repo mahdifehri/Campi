@@ -1,0 +1,40 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Read the Details</p>
+                        <h1>Single Article</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- single article section -->
+    <div class="mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div> <p>contenu</p></div>
+                {{ form_widget(form.contenu) }}
+                {{ form_errors(form.contenu) }}
+                <div> <p>image</p></div>
+                {{ form_widget(form.image) }}
+                {{ form_errors(form.image) }}
+                <input type="submit" value="Modifier" >
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+    <!-- end single article section -->
+{% endblock %}
