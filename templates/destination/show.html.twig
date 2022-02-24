@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}destination index{% endblock %}
+
+{% block content %}
+    <h1>Liste des destination</h1>
+    <div style="text-align: right">
+        <a style="color: #0d0d0d" href="{{ path('destination_new') }}">Ajouter</a>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>localisation</th>
+            <th>nbr parts</th>
+            <th>nbr event</th>
+            <th>image</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for destination in destination %}
+            <tr>
+                <td>{{ destination.id }}</td>
+                <td>{{ destination.nom_dest }}</td>
+                <td>{{ destination.localisation_dest }}</td>
+                <td>{{ destination.nbr_part_dest }}</td>
+                <td>{{ destination.event_dest}}</td>
+                <td>{{ destination.image_dest }}</td>
+                <td>
+                    <button form="myform" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><i class="fas fa-trash" ></i></button>
+                    <form id="myform" method="post" action="{{ path('destination_delete', {'id': club.id}) }}" onsubmit="return confirm('sure?');">
+
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ destination.id) }}">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

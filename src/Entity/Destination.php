@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\DestinationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,17 +27,12 @@ class Destination
     private $localisation_dest;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbr_part_dest;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nbr_participants_dest;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $event_dest;
 
@@ -76,36 +70,25 @@ class Destination
         return $this;
     }
 
-    public function getNbrPartDest(): ?string
+    public function getNbrPartDest(): ?int
     {
         return $this->nbr_part_dest;
     }
 
-    public function setNbrPartDest(?string $nbr_part_dest): self
+    public function setNbrPartDest(?int $nbr_part_dest): self
     {
         $this->nbr_part_dest = $nbr_part_dest;
 
         return $this;
     }
 
-    public function getNbrParticipantsDest(): ?int
-    {
-        return $this->nbr_participants_dest;
-    }
 
-    public function setNbrParticipantsDest(?int $nbr_participants_dest): self
-    {
-        $this->nbr_participants_dest = $nbr_participants_dest;
-
-        return $this;
-    }
-
-    public function getEventDest(): ?string
+    public function getEventDest(): ?int
     {
         return $this->event_dest;
     }
 
-    public function setEventDest(?string $event_dest): self
+    public function setEventDest(?int $event_dest): self
     {
         $this->event_dest = $event_dest;
 

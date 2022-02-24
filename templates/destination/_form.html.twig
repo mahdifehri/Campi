@@ -1,0 +1,46 @@
+<div class="container text-center">
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label>Nom du lieu: </label>
+        {{ form_widget(form.nom_dest) }}
+        {% if not form.nom_dest.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nom_dest) }}
+            </div>
+        {% endif %}
+
+        <label>Geolocalisation: </label>
+        {{ form_widget(form.localisation_dest) }}
+        {% if not form.localisation_dest.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.localisation_dest) }}
+            </div>
+        {% endif %}
+
+        <label>Nombre de participants: </label>
+        {{ form_widget(form.nbr_part_dest) }}
+        {% if not form.nbr_part_dest.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nbr_part_dest) }}
+            </div>
+        {% endif %}
+
+        <label>Nombre d'evenemments: </label>
+        {{ form_widget(form.event_dest) }}
+        {% if not form.event_dest.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.event_dest) }}
+            </div>
+        {% endif %}
+
+        <label>Image: </label>
+        {{ form_widget(form.image_dest) }}
+        {% if not form.image_dest.vars.valid %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.image_dest) }}
+            </div>
+        {% endif %}
+        <button type="submit" value="save" class="btn btn-primary" style="text-align: center">{{ button_label|default('Ajouter') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>

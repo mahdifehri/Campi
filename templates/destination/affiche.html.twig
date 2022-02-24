@@ -1,0 +1,41 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Destinations{% endblock %}
+
+{% block body %}
+    <h1>A</h1>
+    {% for destination in destinations %}
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ destination.nomDest }}</td>
+        </tr>
+        <tr>
+            <th>Localisation</th>
+            <td>{{ destination.localisationDest }}</td>
+        </tr>
+        <tr>
+            <th>nombre de participants</th>
+            <td>{{ destination.nbrPartDest }}</td>
+        </tr>
+        <tr>
+            <th>Nombre d'evenemments</th>
+            <td>{{ destination.eventDest }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>{{ destination.imageDest }}</td>
+        </tr>
+        <tr>
+            <td ><a href="{{ path('destination_delete', {"id": destination.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="btn btn-danger"></i></a></td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+
+{% endblock %}
