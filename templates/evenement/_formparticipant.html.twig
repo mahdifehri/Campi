@@ -1,10 +1,10 @@
 <div> <p>nom</p></div>
-{{ form_widget (formparticipant.nom) }}
+{{ form_widget (formparticipant.nom, { 'attr': {'value':  user.nom } }) }}
 {{ form_errors(formparticipant.nom) }}
 <div> <p>Prenom</p></div>
-{{ form_widget (formparticipant.prenom) }}
+{{ form_widget (formparticipant.prenom, { 'attr': {'value':  user.prenom } }) }}
 {{ form_errors(formparticipant.prenom) }}
 <div> <p>Numero</p></div>
-{{ form_widget (formparticipant.numero_telephone) }}
+{{ form_widget (formparticipant.numero_telephone, { 'attr': {'value':  user.numeroTelephone } }) }}
 {{ form_errors(formparticipant.numero_telephone) }}
 

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,10 +14,9 @@ class ParticipantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_user',HiddenType::class)
             ->add('nom')
             ->add('prenom')
-            ->add('numero_telephone')
+            ->add('numero_telephone',TextType::class)
             ->add('evenements',HiddenType::class)
         ;
     }

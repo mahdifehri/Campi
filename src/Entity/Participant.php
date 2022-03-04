@@ -18,10 +18,7 @@ class Participant
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_user;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -65,6 +62,11 @@ class Participant
      */
     private $evenements;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $users;
+
 
 
     public function getId(): ?int
@@ -73,17 +75,7 @@ class Participant
     }
 
 
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
 
-    public function setIdUser(int $id_user): self
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
 
     public function getNom(): ?string
     {
@@ -129,6 +121,18 @@ class Participant
     public function setEvenements(?Evenement $evenements): self
     {
         $this->evenements = $evenements;
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Evenement;
 use App\Entity\Participant;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,6 +29,8 @@ class ParticipantController extends AbstractController
     public function delete (Participant $participant): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
+        $evenement=$participant->getEvenements();
+        $evenement->setNbrParticipants(($evenement->getNbrParticipants())-1);
         $iddd = $participant->getEvenements()->getId();
         $em->remove($participant);
         $em->flush();

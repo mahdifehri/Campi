@@ -20,10 +20,6 @@ class Evenement
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_user;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -38,6 +34,7 @@ class Evenement
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="la date est necessaire")
+     *  @Assert\GreaterThan("today")
      */
     private $date;
 
@@ -49,6 +46,8 @@ class Evenement
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\PositiveOrZero
+     * @Assert\Type(type="integer",message="le prix doit etre de type intier.")
      */
     private $prix;
 
@@ -60,6 +59,8 @@ class Evenement
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="le nombre de particapants est necessaire")
+     * @Assert\Type(type="integer",message="Vous devez saisir un entier.")
+     * @Assert\Positive
      */
     private $nbr_participants_max;
 
@@ -69,9 +70,14 @@ class Evenement
     private $etat;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="evenements")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="evenements",cascade={"persist", "remove"},orphanRemoval=true)
      */
     private $participants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $users;
 
     public function __construct()
     {
@@ -84,17 +90,6 @@ class Evenement
         return $this->id;
     }
 
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(int $id_user): self
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -218,6 +213,18 @@ class Evenement
                 $participant->setEvenements(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

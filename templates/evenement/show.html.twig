@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Read the Details</p>
-                        <h1>Single Article</h1>
+                        <p>événement</p>
+                        <h1>{{ evenement.destination }}</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                             </div>
                             <div>.</div>
                             <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="author"><i class="fas fa-user"></i> {{ evenement.users.nom }} {{ evenement.users.prenom }}</span>
                                 <span class="date"><i class="fas fa-calendar"></i> {{ evenement.date |date("d/m/Y") }}</span>
                             </p>
                             {% if evenement.nbrParticipants  == 0 %}
@@ -65,7 +65,7 @@
                                     <th> Nom </th>
                                     <th> Prenom </th>
                                     <th> Numero </th>
-                                    <th> Supprimer </th>
+                                    <th> - </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +75,14 @@
                                         <td> {{ participant.nom }} </td>
                                         <td> {{ participant.prenom }} </td>
                                         <td> {{ participant.numeroTelephone }} </td>
-                                        <td class="product-remove"><a href="{{ path('participant_delete', {"id": participant.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                         {% if user.id == participant.evenements.users.id %}
+                                                 <td class="product-remove"><a href="{{ path('participant_delete', {"id": participant.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                         {% elseif participant.users.id == user.id %}
+                                                 <td class="product-remove"><a href="{{ path('participant_delete', {"id": participant.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                         {% else%}
+                                             <td> - </td>
+                                         {% endif %}
+
                                          {% endif %}
 
                                     </tr>
@@ -86,10 +93,15 @@
                                 </tbody>
 
                             </table>
-
-                            <div class="open-btn">
+                            {% if evenement.nbrParticipants == evenement.nbrParticipantsMax %}
+                            <div class="open-btn" STYLE="float: right">
+                                <h6>le nombre max de participants est atteint</h6>
+                            </div>
+                            {% else %}
+                            <div class="open-btn" STYLE="float: right">
                                 <button class="btn btn-success" onclick="openForm()"><strong>Participer</strong></button>
                             </div>
+                            {% endif %}
 
                             <div class="login-popup">
                                 <div class="form-popup" id="popupForm">

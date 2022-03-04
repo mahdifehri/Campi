@@ -54,7 +54,7 @@
                                 <div class="card-header" id="headingTwo">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Supprimer Un événement
+                                            Supprimer/Modifier Un événement
                                         </button>
                                     </h5>
                                 </div>
@@ -66,6 +66,7 @@
                                                     <thead class="cart-table-head">
                                                     <tr class="table-head-row">
                                                         <th class="product-remove"> Supprimer</th>
+                                                        <th class="product-remove"> Modifier</th>
                                                         <th class="product-image">Description</th>
                                                         <th class="product-name">Destination</th>
                                                         <th class="product-price">Prix</th>
@@ -77,6 +78,7 @@
                                                     {% for evenement in evenements %}
                                                     <tr class="table-body-row">
                                                         <td class="product-remove"><a href="{{ path('evenement_delete', {"id": evenement.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="far fa-window-close"></i></a></td>
+                                                        <td class="product-remove"><a href="{{ path('evenement_edit', {"id": evenement.id}) }}" ><i class="fas fa-edit"></i></a></td>
                                                         <td class="text-sm-center">{{ evenement.description }}</td>
                                                         <td class="product-name">{{ evenement.destination }}</td>
                                                         <td class="product-price">{{ evenement.prix }}</td>
@@ -97,6 +99,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {#
                             <div class="card single-accordion">
                                 <div class="card-header" id="headingThree">
                                     <h5 class="mb-0">
@@ -146,6 +149,7 @@
                                     </div>
                                 </div>
                             </div>
+                            #}
                         </div>
 
                     </div>

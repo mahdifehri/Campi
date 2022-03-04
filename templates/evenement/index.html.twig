@@ -19,9 +19,19 @@
     <!-- end breadcrumb section -->
 
     <!-- latest news -->
+    <div style="float: right;margin: 10px 50px 10px;">
+        <form method="POST">
+            <input type="text" name="destination" placeholder="Recherche par destination" size="30">
+            <!--<input type="submit" value="recherche" class="btn btn-success"> -->
+            <button type="submit" class="btn btn-success"  >rechercher </button>
+        </form>
+    </div>
     <div class="latest-news mt-150 mb-150">
+
         <div class="container">
+
             <div class="row">
+
     {% for evenement in evenements %}
                 <div class="col-lg-6 col-md-6">
                     <div class="single-latest-news">
@@ -35,10 +45,10 @@
                                 <div style="float: right;"><h3>{{ evenement.nbrParticipants }}/{{ evenement.nbrParticipantsMax }}</h3></div>
                             {% endif %}
 
-                            <h3><a href="{{ path('evenement_show', {"id": evenement.id}) }}">{{ evenement.destination }}. </a></h3>
+                            <h3><a href="{{ path('evenement_show', {"id": evenement.id}) }}">Destination: {{ evenement.destination }}. </a></h3>
 
                             <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="author"><i class="fas fa-user"></i>{{ evenement.users.nom }} {{ evenement.users.prenom }}</span>
                                 <span class="date"><i class="fas fa-calendar"></i> {{ evenement.date |date("d/m/Y") }}</span>
                             </p>
                             {% if evenement.prix == 0 %}

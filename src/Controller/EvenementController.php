@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Evenement;
 use App\Entity\Participant;
+use App\Entity\User;
 use App\Form\EvenementType;
 use App\Form\ParticipantType;
 use App\Repository\EvenementRepository;
@@ -21,10 +22,19 @@ class EvenementController extends AbstractController
      * @param EvenementRepository $evenementRepository
      * @return Response
      */
-    public function index(EvenementRepository $evenementRepository): Response
+    public function index(EvenementRepository $evenementRepository,Request $request): Response
     {
+        $em=$this->getDoctrine()->getManager();
+        $evenement = $em->getRepository(Evenement::class)->findBy(["etat" =>1]);
+        if($request->isMethod("POST"))
+        {
+            $destination=$request->get('destination');
+            $evenement= $em->getRepository(Evenement::class)->findBy(["destination"=>$destination,"etat"=>1]);
+
+
+        }
         return $this->render('evenement/index.html.twig',[
-          "evenements"=>  $evenementRepository->findBy(["etat" =>1])
+          "evenements"=>  $evenement
         ]);
     }
 
@@ -36,18 +46,21 @@ class EvenementController extends AbstractController
      */
     public function mesevenements(Request $request,EvenementRepository $evenementRepository): Response
     {
+        $iduser=1;
         $evenement = new Evenement();
         $form= $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
-        {
+        {  $em=$this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->findOneBy(["id"=>1]);
+            $evenement->setUsers($user);
             $em =$this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
         }
         return $this->render('evenement/mesevenements.html.twig', [
             "form"=>$form->createView(),
-            "evenements"=>  $evenementRepository->findAll()
+            "evenements"=>  $evenementRepository->findBy(["users"=>$iduser])
         ]);
     }
     /**
@@ -56,22 +69,27 @@ class EvenementController extends AbstractController
      * @return Response
      */
     public function show (Evenement $evenement,ParticipantRepository $participantRepository,Request $request): Response
-    {
+    {   $iduser=1;
         $participant = new Participant();
+        $em=$this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(["id"=>$iduser]);
         $form= $this->createForm(ParticipantType::class, $participant);
         $form->handleRequest($request);
+        $participant->setUsers($user);
         $participant->setEvenements($evenement);
-        $participant->setIdUser(1);
         if($form->isSubmitted() && $form->isValid())
         {
+            $evenement->setNbrParticipants(($evenement->getNbrParticipants())+1);
             $em =$this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
+
         }
         return $this->render("evenement/show.html.twig",[
          "evenement"=>$evenement,
             "formparticipant"=>$form->createView(),
-            "participants"=>$participantRepository->findAll()
+            "participants"=>$participantRepository->findAll(),
+            "user"=>$user
         ]);
     }
 
@@ -108,4 +126,5 @@ class EvenementController extends AbstractController
             "form"=>$form->createView()
         ]);
     }
+
 }

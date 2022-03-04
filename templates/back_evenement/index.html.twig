@@ -12,7 +12,7 @@
                         <thead>
                         <tr>
                             <th> ID </th>
-                            <th> ID_User </th>
+                            <th> Utilisateur </th>
                             <th> Image </th>
                             <th> Description </th>
                             <th> Destination</th>
@@ -26,7 +26,7 @@
                         {% for evenement in evenements %}
                         <tr>
                             <td> {{ evenement.id }} </td>
-                            <td> {{ evenement.idUser }} </td>
+                            <td> {{ evenement.users.id}},{{ evenement.users.prenom}} {{ evenement.users.nom}} </td>
 
                             <td class="py-1">
                                 <img src="{{ evenement.image }}" alt=" {{ evenement.image }}">
