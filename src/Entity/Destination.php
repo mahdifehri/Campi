@@ -3,6 +3,8 @@
 namespace App\Entity;
 use App\Repository\DestinationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=DestinationRepository::class)
@@ -18,26 +20,31 @@ class Destination
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $nom_dest;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $localisation_dest;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     private $nbr_part_dest;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     private $event_dest;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $image_dest;
 

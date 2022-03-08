@@ -1,0 +1,17 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}New Destination{% endblock %}
+
+{% block body %}
+
+    <h1>Ajouter une destination</h1>
+    <div class="billing-address-form" >
+
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+        {{ include('back/destination/_form.html.twig') }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

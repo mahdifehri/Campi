@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Region;
+use App\Entity\Reclamation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Region|null find($id, $lockMode = null, $lockVersion = null)
- * @method Region|null findOneBy(array $criteria, array $orderBy = null)
- * @method Region[]    findAll()
- * @method Region[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reclamation|null find($id_rec, $lockMode = null, $lockVersion = null)
+ * @method Reclamation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Reclamation[]    findAll()
+ * @method Reclamation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RegionRepository extends ServiceEntityRepository
+class ReclamationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Region::class);
+        parent::__construct($registry, Reclamation::class);
     }
 
     // /**
-    //  * @return Region[] Returns an array of Region objects
+    //  * @return Reclamation[] Returns an array of Reclamation objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class RegionRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Region
+    public function findOneBySomeField($value): ?Reclamation
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

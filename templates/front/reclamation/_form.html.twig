@@ -1,0 +1,26 @@
+<div class="form-group">
+    <label>Type: </label>
+    {{ form_widget(form.type_rec) }}
+    {{ form_errors(form.type_rec) }}
+</div>
+<div class="form-group">
+    <label>Destination: </label>
+    {{ form_widget(form.destination) }}
+    {{ form_errors(form.destination) }}
+</div>
+<div class="form-group">
+    <label>Texte: </label>
+    {{ form_widget(form.description_rec) }}
+    {{ form_errors(form.description_rec) }}
+</div>
+<div class="form-group">
+    <label>Fichier: </label>
+    {{ form_widget(form.file) }}
+    {{ form_errors(form.file) }}
+</div>
+
+<div class="form-group" style="align-self: center">
+    <button type="submit" value="save" class="btn btn-outline-success btn-fw">{{ button_label|default('Effectuer') }}</button>
+</div>
+{{ form_end(form) }}
+
