@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=CommandeRepository::class)
@@ -19,16 +22,20 @@ class Commande
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * Assert\Type("integer",message="Entre un nombre")
      */
     private $num_cmd;
 
     /**
      * @ORM\Column(type="date")
+     *
      */
     private $date_cmd;
 
     /**
      * @ORM\Column(type="float")
+     *  @Assert\NotBlank
      */
     private $total_cmd;
 
