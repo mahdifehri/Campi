@@ -25,7 +25,7 @@ class UserType extends AbstractType
             ["attr" =>[
                 "class"=>"form-control" , 'placeholder' => 'Donner votre email']
             ])
-            ->add('motpasse', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class , 
+            ->add('password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class ,
             ["attr" =>[
                 "class"=>"form-control", 'placeholder' => 'Donner votre mot de passe'],
             ])
