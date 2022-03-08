@@ -9,8 +9,13 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Evénements</p>
-                        <h1>Campi</h1>
+                        <p>campi</p>
+                        {% if evenements is empty %}
+                            <h2 style="color: white">Aucun événement pour le moment</h2>
+                        {% else %}
+                            <h1>Evénements({{ evenements.getTotalItemCount }})</h1>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -25,6 +30,10 @@
             <!--<input type="submit" value="recherche" class="btn btn-success"> -->
             <button type="submit" class="btn btn-success"  >rechercher </button>
         </form>
+    </div>
+    <div style="margin-top: 80px;margin-bottom: 0px;margin-left: 38%;"><h5>Cliquez sur l'icone pour afficher un calendrier </h5></div>
+    <div style="margin-top: 10px;margin-bottom: 0px;margin-left: 50%;">
+    <a href="{{ path('calendrier') }}" ><i class="fa fa-calendar" style="font-size: xxx-large"></i></a>
     </div>
     <div class="latest-news mt-150 mb-150">
 
@@ -67,18 +76,19 @@
     {% endfor%}
             </div>
 
+
+
             <div class="row">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            <div class="pagination-wrap">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a class="active" href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul>
+                            <div style="display: inline-block;padding: 8px 16px;background-color: #362b25;border-radius: 5px;font-size: 22px;float: bottom;color: white;text-decoration-color: white;text-decoration-color: white">
+
+
+
+                                    {{ knp_pagination_render(evenements) }}
+
+
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,40 @@
+{% extends 'base-calendrier.html.twig' %}
+
+{% block title %}calendrier{% endblock %}
+{% block stylesheets %}
+ <style>
+     #calendrier{
+         width: 80%;
+         margin: auto;
+     }
+ </style>
+{% endblock %}
+
+{% block body %}
+       </div>
+    <div style="margin-top: 10px;margin-bottom: 0px;margin-left: 47%;">
+    <a href="{{ path('evenement') }}" > <h5>Cliquez ici pour retourner </h5></a>
+    </div>
+    <div class="latest-news mt-150 mb-150">
+    <div id="calendrier"></div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+
+            let calendar = new FullCalendar.Calendar(calendarElt,{
+                initialView: 'dayGridMonth',
+                locale: 'fr',
+                headerToolbar:{
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                events:{{ data|raw }}
+            })
+            calendar.render()
+
+        }
+    </script>
+{% endblock %}

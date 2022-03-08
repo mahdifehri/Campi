@@ -9,23 +9,31 @@ use App\Form\EvenementType;
 use App\Form\ParticipantType;
 use App\Repository\EvenementRepository;
 use App\Repository\ParticipantRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class EvenementController extends AbstractController
 {
     /**
      * @Route("/evenement", name="evenement")
-     * @param EvenementRepository $evenementRepository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(EvenementRepository $evenementRepository,Request $request): Response
+    public function index(Request $request,PaginatorInterface $paginator): Response
     {
         $em=$this->getDoctrine()->getManager();
         $evenement = $em->getRepository(Evenement::class)->findBy(["etat" =>1]);
+        $evenement = $paginator->paginate(
+            $evenement,
+            $request->query->getInt('page',1),
+            4
+        );
         if($request->isMethod("POST"))
         {
             $destination=$request->get('destination');
@@ -52,20 +60,25 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {  $em=$this->getDoctrine()->getManager();
-            $user = $em->getRepository(User::class)->findOneBy(["id"=>1]);
+            $user = $em->getRepository(User::class)->findOneBy(["id"=>$iduser]);
             $evenement->setUsers($user);
             $em =$this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
         }
+
         return $this->render('evenement/mesevenements.html.twig', [
             "form"=>$form->createView(),
-            "evenements"=>  $evenementRepository->findBy(["users"=>$iduser])
+            "evenements"=>  $evenementRepository->findBy(["users"=>$iduser]),
         ]);
     }
+
+
     /**
      * @Route("evenement/{id}/show", name="evenement_show")
      * @param Evenement $evenement
+     * @param ParticipantRepository $participantRepository
+     * @param Request $request
      * @return Response
      */
     public function show (Evenement $evenement,ParticipantRepository $participantRepository,Request $request): Response
@@ -125,6 +138,28 @@ class EvenementController extends AbstractController
         return $this->render("evenement/edit.html.twig",[
             "form"=>$form->createView()
         ]);
+    }
+    /**
+     * @Route("evenement/calendrier", name="calendrier")
+     */
+    public function calendrier (EvenementRepository $evenement)
+    { $events = $evenement->findAll();
+        $rdvs = [];
+        foreach ($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $event->getDate()->format('Y-m-d'),
+                'end' => $event->getDate()->format('Y-m-d'),
+                'title' => $event->getDestination(),
+                'description'=>$event->getDescription(),
+                'backgroundColor'=>'#27ae60',
+                'borderColor'=>'#ffffff',
+                'textColor'=>'#ffffff',
+
+            ];
+        }
+        $data = json_encode($rdvs);
+        return $this->render("evenement/calendar.html.twig",compact('data'));
     }
 
 }

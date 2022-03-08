@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 
-use App\Entity\Evenement;
 use App\Entity\Participant;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
