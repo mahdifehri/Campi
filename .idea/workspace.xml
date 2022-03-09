@@ -2,69 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc3785f7-1ffd-4c7a-8282-85fbbefbd2da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Pidev-Campi.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220302222152.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220302223145.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220302234801.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/animate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/magnific-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/magnific-popup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/meanmenu.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/meanmenu.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/base/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/base/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/base/_typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/base/_typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/base/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/base/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/common/_common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/common/_common.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/common/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/common/_footer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/common/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/common/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/common/_hover.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/common/_hover.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/pages/_404.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/pages/_404.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/pages/_404.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/pages/_404.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/pages/_about.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/pages/_about.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/pages/_contact.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/pages/_contact.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/pages/_shop.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/pages/_shop.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_about.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_about.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_cart-banner.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_cart-banner.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_hero.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_list.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_news.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_news.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_shop-banner.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_shop-banner.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/css/scss/sections/_testimonials.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/css/scss/sections/_testimonials.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/form-validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/form-validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/jquery.countdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/jquery.countdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/jquery.isotope-3.0.6.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/jquery.isotope-3.0.6.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/jquery.magnific-popup.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/jquery.magnific-popup.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/sticker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/sticker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/front-office/js/waypoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/front-office/js/waypoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base-back.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-back.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-calendrier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-calendrier.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-front.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-front.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/emails/event.hml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/emails/event.hml.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/_formparticipant.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/_formparticipant.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/mesevenements.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/mesevenements.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/footer.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/includes/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/header.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -245,6 +184,7 @@
       <workItem from="1646788659253" duration="174000" />
       <workItem from="1646826096349" duration="1249000" />
       <workItem from="1646827550440" duration="64000" />
+      <workItem from="1646827683722" duration="314000" />
     </task>
     <servers />
   </component>
