@@ -107,7 +107,7 @@ class Destination
         return $this->image_dest;
     }
 
-    public function setImageDest(?string $image_dest): self
+    public function setImageDest($image_dest): self
     {
         $this->image_dest = $image_dest;
 

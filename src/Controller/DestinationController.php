@@ -9,6 +9,7 @@ use App\Form\ReclamationType;
 use App\Repository\DestinationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,6 +28,15 @@ class DestinationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($destination->getImageDest()=="")
+                $destination->setImageDest("no_image.jpg");
+            else
+            {
+                $file = new File($destination->getImageDest());
+                $fileName= md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_directory'),$fileName);
+                $destination->setImageDest($fileName);
+            }
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($destination);
@@ -85,26 +95,12 @@ class DestinationController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{id}", name="destination_show", methods={"GET", "POST"})
+     * @Route("front/destination/{id}", name="destination_show", methods={"GET"})
      */
-    public function show(Request $request, Destination $destination): Response
+    public function show(Destination $destination): Response
     {
-        $reclamation = new Reclamation();
-        $reclamation->setDestination($destination);
-        $form = $this->createForm(ReclamationType::class, $reclamation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($reclamation);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('destination_show', ['id' => $destination->getId()]);
-        }
-
         return $this->render('front/destination/show.html.twig', [
             'destination' => $destination,
-            'form' => $form->createView(),
         ]);
     }
 }

@@ -32,9 +32,13 @@ class ReclamationType extends AbstractType
                     "class" =>"form-control"
                 ]
             ])
-            ->add('file', FileType::class, ['mapped' => false])
+            ->add('file',FileType::class, [
+                "attr" =>[
+                    "class" =>"form-control"],
+                'data_class' => null,
+                'required' => false,])
             ->add('etat_rec',HiddenType::class, ['empty_data' => 'En attente'])
-            ->add('flag',HiddenType::class,['empty_data' => '1'])
+            ->add('flag',HiddenType::class,['empty_data' => '0'])
             ->add('destination',EntityType::class, [
         'class' => Destination::class,
         'choice_label' => 'nom_dest'

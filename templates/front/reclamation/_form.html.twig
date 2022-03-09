@@ -9,7 +9,7 @@
     {{ form_errors(form.destination) }}
 </div>
 <div class="form-group">
-    <label>Texte: </label>
+    <label>Description: </label>
     {{ form_widget(form.description_rec) }}
     {{ form_errors(form.description_rec) }}
 </div>
@@ -20,7 +20,7 @@
 </div>
 
 <div class="form-group" style="align-self: center">
-    <button type="submit" value="save" class="btn btn-outline-success btn-fw">{{ button_label|default('Effectuer') }}</button>
+    <button type="submit" value="save" class="cart-btn">{{ button_label|default('Effectuer') }}</button>
 </div>
 {{ form_end(form) }}
 

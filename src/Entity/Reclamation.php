@@ -107,7 +107,7 @@ class Reclamation
         return $this->file;
     }
 
-    public function setFile(?string $file): self
+    public function setFile($file): self
     {
         $this->file = $file;
 
