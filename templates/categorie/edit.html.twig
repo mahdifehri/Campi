@@ -9,8 +9,11 @@
     {{ form_start(form) }}
 
     {{ include('categorie/_form.html.twig') }}
-    <button class="btn btn-primary">
-        Editer
-    </button>
+    <button type="submit" class="btn btn-primary mr-2">Editer </button>
+    <button class="btn btn-dark">Cancel</button>
+    {{ form_rest(form) }}
     {{ form_end(form) }}
+    </form>
+    </div>
+    </div>
 {% endblock %}

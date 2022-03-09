@@ -3,24 +3,27 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
-use App\Entity\Produit;
 use App\Form\CategorieType;
-use App\Form\ProduitType;
+use App\Repository\CategorieRepository;
+
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class CategorieController extends AbstractController
 {
     /**
      * @Route("/categorie", name="categorie")
      */
-    public function index(): Response
+    public function index(CategorieRepository $categorieRepository): Response
     {
-        return $this->render('categorie/index.html.twig', [
-            'controller_name' => 'CategorieController',
+        return $this->render('categorie/listecategorie.html.twig', [
+            'categories' => $categorieRepository->FindAll(),
+
         ]);
     }
 
@@ -51,7 +54,7 @@ class CategorieController extends AbstractController
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('categorie');
 
         }
         return $this->render('categorie/add.html.twig', [
@@ -73,7 +76,7 @@ class CategorieController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('categorie');
         }
         return $this->render("categorie/edit.html.twig", [
             "form" => $form->createView()
@@ -91,6 +94,7 @@ class CategorieController extends AbstractController
         $em->remove($categorie);
         $em->flush();
 
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute("categorie");
     }
+
 }

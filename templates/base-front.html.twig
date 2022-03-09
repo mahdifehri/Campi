@@ -73,54 +73,36 @@
 
     <!-- products -->
     <div class="product-section mt-150 mb-150">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Tente et Abris</li>
-                            <li data-filter=".berry">Couchage</li>
-                            <li data-filter=".lemon">Mobilier de Camping</li>
-                            <li data-filter=".lemon">Boire et Manger</li>
-                            <li data-filter=".lemon">Equipements et Hygiène</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+    <div>
+        {{ include('produit/recherche.html.twig') }}
+    </div>
+        <div class="container" style="margin-top: 100px">
             <div class="row product-lists">
-                <div class="col-lg-4 col-md-6 text-center strawberry">
-
-                </div>
-                <div class="col-lg-4 col-md-6 text-center berry">
-
-                </div>
-
-
                 {% for produit in produits %}
-                <div class="col-lg-4 col-md-6 text-center strawberry">
+
+
+                <div class="col-lg-4 col-md-6 text-center berry">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a href="single-product.html"><img src="{{ asset('assets/' ~ produit.image) }}" alt=""></a>
+                            <img src="{{ asset('assets/' ~ produit.image) }}" alt="">
                         </div>
                         <h3>{{ produit.nom }}</h3>
-                        <p class="product-price"> {{ produit.prix }} DT </p>
+                        <p class="product-price">{{ produit.prix }} </p>
                         <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter Panier</a>
                     </div>
                 </div>
-            </div>
+
             {% endfor %}
+        </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a class="active" href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">Next</a></li>
+                            <li><a href="{{ path('produit') }}">Prev</a></li>
+                            <li><a href="{{ path('produit') }}">1</a></li>
+                            <li><a class="active" href="{{ path('produit') }}">2</a></li>
+                            <li><a href="{{ path('produit') }}">3</a></li>
+                            <li><a href="{{ path('produit') }}">Next</a></li>
                         </ul>
                     </div>
                 </div>

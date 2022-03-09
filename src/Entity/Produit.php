@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  */
@@ -25,29 +26,33 @@ class Produit
     /**
      *
      * @ORM\Column(type="string", length=255)
-     * @Assert\Range(min=7)
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
+
      */
     private $designation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
 
     private $quantite;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
     private $prix;
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Nom is required")
+
      */
     private $image;
 
@@ -166,4 +171,11 @@ class Produit
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+
 }

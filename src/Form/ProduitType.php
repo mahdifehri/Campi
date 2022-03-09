@@ -51,7 +51,10 @@ class ProduitType extends AbstractType
             )
 
             ->add('image',FileType::class,array(
-                'data_class'=>null,'required'=>false)
+                'data_class'=>null,'required'=>false,
+                    "attr"=>[
+                        "class"=>"file-upload-browse btn btn-primary"
+                    ])
             )
         ;
     }

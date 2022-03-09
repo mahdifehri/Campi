@@ -1,0 +1,55 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="card-body">
+        <h4 class="card-title">Liste Des Categories</h4>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Nom Categorie </th>
+                    <th> Description </th>
+                    <th> Action </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td class="py-1">
+                            {{ categorie.id }}
+                        </td>
+                        <td> {{ categorie.nomCategorie }} </td>
+                        <td>  {{ categorie.description }}</td>
+                        <td>
+                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Modifier</a>
+                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}">Supprimer</a>
+                            <a href="{{ path('categorie_add') }}">Ajouter</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

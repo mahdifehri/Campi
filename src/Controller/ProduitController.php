@@ -2,26 +2,47 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
+use App\Entity\Categorie;
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Repository\CategorieRepository;
 use App\Repository\ProduitRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 
 class ProduitController extends AbstractController
 {
     /**
      * @Route("/produit", name="produit")
      */
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(ProduitRepository $produitRepository,Request $request,PaginatorInterface $paginator): Response
     {
+
+        $produits = $produitRepository->findAll();
+
+        $produits = $paginator->paginate(
+            $produits,
+            $request->query->getInt('page',1),
+            4
+        );
+
+        $data = new SearchData();
+        $form = $this->createForm(\App\Form\SearchType::class,$data);
+        $form->handleRequest($request);
+        $produit=$produitRepository->findSearch($data);
         return $this->render('produit/listeProduits.html.twig', [
-            'produits' => $produitRepository->findAll(),
+            'produits' => $produit,
+            'form'=> $form->createView()
         ]);
     }
     /**
@@ -56,7 +77,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("produit/{id}/show", name="article_show")
+     * @Route("produit/{id}/show", name="produit_show")
      * @param Produit $produit
      * @return Response
      */
@@ -81,11 +102,13 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('front');
         }
         return $this->render("produit/edit.html.twig", [
             "form" => $form->createView()
+
         ]);
+
     }
 
     /**
@@ -99,6 +122,75 @@ class ProduitController extends AbstractController
         $em->remove($produit);
         $em->flush();
 
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute("front");
+    }
+    /**
+     * @Route("/produit/recherche", name="recherche_prod")
+     */
+    public function Recherche(ProduitRepository $produitRepository,Request $request)
+    {
+        $data=$request->get("key");
+        $produit=$produitRepository->findAll();
+        $chosen=array();
+        foreach($produit as $p){
+            if(str_contains(strtoupper($p->getNom()), strtoupper($data))){
+               array_push($chosen,$p);
+            }
+        }
+        return $this->render('produit/listeProduits.html.twig',
+            ['produits' => $chosen]);
+    }
+    /**
+     * @Route("/produit/stats", name="stats")
+     */
+    public function stat()
+    {
+        $repository = $this->getDoctrine()->getRepository(Categorie::class);
+        $produit = $repository->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $cat1=0;
+        $cat2=0;
+        $cat3=0;
+        $cat4=0;
+
+
+        foreach ($produit as $produit)
+        {
+            if ( $produit->getnomCategorie()=="Tente")  :
+
+                $cat1+=1;
+            else:
+
+                $cat2+=1 ;
+
+
+            endif;
+
+        }
+        //$data=array_map(function (Categorie $item){
+    //return [$item->getNomCategorie(),5];
+//},$repository->findAll());
+//dump([array_merge([['categories', 'nombre']],$data)]);die;
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['categories', 'nombre'],
+                ['Tente', $cat1],
+                ['Couchage', $cat2],
+            ]
+        );
+
+        $pieChart->getOptions()->setTitle('Listes des produits par Catégorie ');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('produit/stats.html.twig', array('piechart' => $pieChart));
     }
 }

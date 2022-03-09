@@ -6,9 +6,15 @@
 
     <h1>Ajouter un produit </h1>
 
-    {{ form_start(form) }}
+
 
     {{ include('produit/_form.html.twig') }}
 
+    <button type="submit" class="btn btn-primary mr-2">Ajouter </button>
+    <button class="btn btn-dark">Cancel</button>
+    {{ form_rest(form) }}
     {{ form_end(form) }}
+    </form>
+    </div>
+    </div>
 {% endblock %}

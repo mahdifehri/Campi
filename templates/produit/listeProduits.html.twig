@@ -9,8 +9,16 @@
 
     <div class="card-body">
         <h4 class="card-title">Liste Des Produits</h4>
+        <div style="float: right; margin-bottom: 10px ;>
+            <button type=" submit" class="btn btn-outline-success" ><a href="{{ path('produit_add') }}"style="text-decoration: none ;  " >Ajouter Produit</a></button>
+        </div>
 
-
+        <form class="forms-sample" method="post" action="{{ path('recherche_prod') }}">
+            <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="key"/>
+                <button type="submit" class="btn btn-outline-primary" >search</button>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -22,6 +30,7 @@
                     <th> Prix </th>
                     <th> Action</th>
                     <th> Image </th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -35,17 +44,10 @@
                     <td> {{ produit.quantite }}</td>
                     <td> {{ produit.prix}} </td>
                     <td>
-                        <a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
-                        <a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer</a>
-                        <a href="{{ path('produit_add') }}">Ajouter</a>
+                        <button type="submit" class="btn btn-warning"> <a href="{{ path('produit_edit', {'id': produit.id}) }}" style="text-decoration: none">Modifier</a></button>
+                        <button type="submit" class="btn btn-danger"> <a href="{{ path('produit_delete', {'id': produit.id}) }}" style="text-decoration: none">Supprimer</a></button>
                     </td>
-
                     <td> <img src="{{ asset('assets/' ~ produit.image) }}"> </td>
-
-
-
-
-
                 </tr>
                 {% else %}
                     <tr>
@@ -53,10 +55,10 @@
                     </tr>
                 {% endfor %}
 
-
                 </tbody>
             </table>
         </div>
+
     </div>
 
 

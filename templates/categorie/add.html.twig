@@ -6,9 +6,13 @@
 
     <h1>Ajouter une categorie </h1>
 
-    {{ form_start(form) }}
 
     {{ include('categorie/_form.html.twig') }}
-
+    <button type="submit" class="btn btn-primary mr-2">Ajouter </button>
+    <button class="btn btn-dark">Cancel</button>
+    {{ form_rest(form) }}
     {{ form_end(form) }}
+    </form>
+    </div>
+    </div>
 {% endblock %}
