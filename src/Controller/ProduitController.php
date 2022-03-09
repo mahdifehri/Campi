@@ -8,6 +8,7 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\CategorieRepository;
 use App\Repository\ProduitRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -43,7 +47,7 @@ class ProduitController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function add(Request $request): Response
+    public function add(Request $request, UserRepository $userRepository, MailerInterface $mailer): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
@@ -60,6 +64,18 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+
+            foreach ($userRepository->findAll() as $user) {
+                $email = (new Email())
+                    ->from('campi.pidev@gmail.com')
+                    ->to($user->getEmail())
+                    ->subject('Nouveau Produit')
+                    ->html('<p>Bonjour, On est ravi de vous informer qu un nouveau produit <span style="color: red">' . $produit->getNom() . '</span> a été ajouté!</p>');
+
+                $mailer->send($email);
+            }
+
+
 
             return $this->redirectToRoute('front');
 

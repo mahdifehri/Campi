@@ -22,27 +22,8 @@ class CategorieController extends AbstractController
     /**
      * @Route("/categorie", name="categorie")
      */
-    public function index(CategorieRepository $categorieRepository, PaginatorInterface $paginator, Request $request, MailerInterface $mailer): Response
+    public function index(CategorieRepository $categorieRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
-        $email = (new Email())
-            ->from('campi.pidev@gmail.com')
-            ->to("ahmed.derouiche@esprit.tn")
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Campi.Tn-Evénement validé')
-            ->text('Sending emails is fun again!')
-            ->html('<p>Bonjour, On est ravi de vous informer que votre événement a été validé !</p>');
-
-        $mailer->send($email);
-
-
-
-
-
-
         return $this->render('categorie/listecategorie.html.twig', [
             'paginator' => true,
             'categories' => $paginator->paginate(
