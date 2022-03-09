@@ -10,11 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-<<<<<<< HEAD:migrations/Version20220308225835.php
-final class Version20220308225835 extends AbstractMigration
-=======
-final class Version20220305122443 extends AbstractMigration
->>>>>>> origin/commande-feriel:migrations/Version20220305122443.php
+final class Version20220308202019 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -28,29 +24,18 @@ final class Version20220305122443 extends AbstractMigration
         $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, num_cmd INT NOT NULL, date_cmd DATE NOT NULL, total_cmd DOUBLE PRECISION NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commentaire (id INT AUTO_INCREMENT NOT NULL, id_post INT NOT NULL, contenu LONGTEXT NOT NULL, id_user INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE destination (id INT AUTO_INCREMENT NOT NULL, nom_dest VARCHAR(255) DEFAULT NULL, localisation_dest VARCHAR(255) DEFAULT NULL, nbr_part_dest VARCHAR(255) DEFAULT NULL, nbr_participants_dest INT DEFAULT NULL, event_dest VARCHAR(255) DEFAULT NULL, image_dest VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-<<<<<<< HEAD:migrations/Version20220308225835.php
-        $this->addSql('CREATE TABLE evenement (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, description LONGTEXT DEFAULT NULL, image VARCHAR(255) DEFAULT NULL, date DATE DEFAULT NULL, destination VARCHAR(255) NOT NULL, prix INT DEFAULT NULL, nbr_participants INT DEFAULT NULL, nbr_participants_max INT NOT NULL, etat INT DEFAULT NULL, INDEX IDX_B26681E67B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-=======
         $this->addSql('CREATE TABLE evenement (id INT AUTO_INCREMENT NOT NULL, id_user INT NOT NULL, description LONGTEXT NOT NULL, image VARCHAR(255) DEFAULT NULL, date DATE DEFAULT NULL, destination VARCHAR(255) NOT NULL, prix INT DEFAULT NULL, nbr_participants INT DEFAULT NULL, nbr_participants_max INT NOT NULL, etat INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE facture (id INT AUTO_INCREMENT NOT NULL, num_fact INT NOT NULL, total_fact DOUBLE PRECISION NOT NULL, date_fact DATE NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
->>>>>>> origin/commande-feriel:migrations/Version20220305122443.php
         $this->addSql('CREATE TABLE panier (id INT AUTO_INCREMENT NOT NULL, nbr_produit INT NOT NULL, total_produit INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE participant (id INT AUTO_INCREMENT NOT NULL, evenements_id INT NOT NULL, users_id INT DEFAULT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, numero_telephone VARCHAR(255) NOT NULL, INDEX IDX_D79F6B1163C02CD4 (evenements_id), INDEX IDX_D79F6B1167B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE post (id INT AUTO_INCREMENT NOT NULL, id_user INT NOT NULL, contenu LONGTEXT NOT NULL, image VARCHAR(255) DEFAULT NULL, nbr_reaction INT DEFAULT NULL, nbr_commentaire INT DEFAULT NULL, etat INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, produit_id INT NOT NULL, panier_id INT NOT NULL, designation VARCHAR(255) NOT NULL, quantite INT DEFAULT NULL, prix DOUBLE PRECISION NOT NULL, fournisseur_id INT NOT NULL, nom VARCHAR(255) NOT NULL, image VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, nom_reg VARCHAR(255) DEFAULT NULL, localisation_reg VARCHAR(255) DEFAULT NULL, nbr_participants_reg INT DEFAULT NULL, nbr_event_reg INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, numerotelephone VARCHAR(255) NOT NULL, photo_user VARCHAR(255) NOT NULL, nom_role VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE evenement ADD CONSTRAINT FK_B26681E67B3B43D FOREIGN KEY (users_id) REFERENCES user (id)');
-        $this->addSql('ALTER TABLE participant ADD CONSTRAINT FK_D79F6B1163C02CD4 FOREIGN KEY (evenements_id) REFERENCES evenement (id)');
-        $this->addSql('ALTER TABLE participant ADD CONSTRAINT FK_D79F6B1167B3B43D FOREIGN KEY (users_id) REFERENCES user (id)');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, prenom VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, motpasse VARCHAR(255) NOT NULL, numero_telephone VARCHAR(255) NOT NULL, role VARCHAR(255) NOT NULL, photo_user VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE participant DROP FOREIGN KEY FK_D79F6B1163C02CD4');
-        $this->addSql('ALTER TABLE evenement DROP FOREIGN KEY FK_B26681E67B3B43D');
-        $this->addSql('ALTER TABLE participant DROP FOREIGN KEY FK_D79F6B1167B3B43D');
         $this->addSql('DROP TABLE categorie');
         $this->addSql('DROP TABLE commande');
         $this->addSql('DROP TABLE commentaire');
@@ -58,7 +43,6 @@ final class Version20220305122443 extends AbstractMigration
         $this->addSql('DROP TABLE evenement');
         $this->addSql('DROP TABLE facture');
         $this->addSql('DROP TABLE panier');
-        $this->addSql('DROP TABLE participant');
         $this->addSql('DROP TABLE post');
         $this->addSql('DROP TABLE produit');
         $this->addSql('DROP TABLE region');

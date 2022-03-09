@@ -1,0 +1,39 @@
+{% extends 'base-back.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Facture</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ facture.id }}</td>
+            </tr>
+            <tr>
+                <th>NumFact</th>
+                <td>{{ facture.numFact }}</td>
+            </tr>
+            <tr>
+                <th>TotalFact</th>
+                <td>{{ facture.totalFact }}</td>
+            </tr>
+            <tr>
+                <th>DateFact</th>
+                <td>{{ facture.dateFact ? facture.dateFact|date('Y-m-d') : '' }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('facture_index') }}"  class="btn btn-secondary">back to list</a>
+
+    <a href="{{ path('facture_edit', {'id': facture.id}) }}"  class="btn btn-secondary">edit</a>
+
+
+
+
+
+    {{ include('facture/_delete_form.html.twig') }}
+{% endblock %}

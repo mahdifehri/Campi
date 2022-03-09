@@ -1,0 +1,50 @@
+ <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div id="invoice">
+
+                    <div class="invoice overflow-auto">
+                        <div style="min-width: 600px">
+
+
+
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-left">DESCRIPTION</th>
+                                        <th class="text-right">HOUR PRICE</th>
+                                        <th class="text-right">HOURS</th>
+                                        <th class="text-right">TOTAL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="no">01</td>
+                                        <td class="text-left">
+                                            <h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+                                        <td class="unit">$40.00</td>
+                                        <td class="qty">30</td>
+                                        <td class="total">$1,200.00</td>
+                                    </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                                <div class="thanks">Thank you!</div>
+                                <div class="notices">
+                                    <div>NOTICE:</div>
+                                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                                </div>
+                            </main>
+                            <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
