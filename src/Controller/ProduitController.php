@@ -77,7 +77,7 @@ class ProduitController extends AbstractController
 
 
 
-            return $this->redirectToRoute('front');
+            return $this->redirectToRoute('front_prod');
 
         }
         return $this->render('produit/add.html.twig', [
@@ -111,7 +111,7 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirectToRoute('front');
+            return $this->redirectToRoute('front_prod');
         }
         return $this->render("produit/edit.html.twig", [
             "form" => $form->createView()
@@ -131,7 +131,7 @@ class ProduitController extends AbstractController
         $em->remove($produit);
         $em->flush();
 
-        return $this->redirectToRoute("front");
+        return $this->redirectToRoute("front_prod");
     }
     /**
      * @Route("/produit/recherche", name="recherche_prod")
@@ -183,14 +183,17 @@ class ProduitController extends AbstractController
 //},$repository->findAll());
 //dump([array_merge([['categories', 'nombre']],$data)]);die;
 
-        $pieChart = new PieChart();
-        $pieChart->getData()->setArrayToDataTable(
-            [['categories', 'nombre'],
-                ['Tente', $cat1],
-                ['Couchage', $cat2],
-            ]
-        );
+        $data=array_map(function (Categorie $item){
+            return [$item->getNomCategorie(),$item->getProduits()->count()];
+        },$repository->findAll());
 
+
+        array_unshift($data,['Task', 'Hours per Day']);
+
+
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable($data);
         $pieChart->getOptions()->setTitle('Listes des produits par Catégorie ');
         $pieChart->getOptions()->setHeight(500);
         $pieChart->getOptions()->setWidth(900);

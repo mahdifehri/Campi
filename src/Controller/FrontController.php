@@ -15,7 +15,7 @@ use App\Repository\ProduitRepository;
 class FrontController extends AbstractController
 {
     /**
-     * @Route("/front", name="front")
+     * @Route("/front_prod", name="front_prod")
      */
     public function index(ProduitRepository $produitRepository,Request $request): Response
     {
