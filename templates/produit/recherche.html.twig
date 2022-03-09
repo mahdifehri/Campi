@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: -100px">
+    {{  form_start(form) }}
+
+    <h4 style="color: #2aabd2">Catégories</h4>
+    {{ form_row(form.categories) }}
+    <h4 style="color: #2aabd2">Prix</h4>
+    <div class="flex" style="margin-bottom: 20px;" >
+
+            {{ form_row(form.min) }}
+
+            {{ form_row(form.max) }}
+
+    </div>
+    <div style="margin-bottom: 10px;">
+    {{ form_row(form.q) }}
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+    {{ form_end(form) }}
+
+
+
+
+</div>

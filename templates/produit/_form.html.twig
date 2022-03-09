@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-body">
+          <h4 class="card-title">Ajout Produit </h4>
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+        <form class="forms-sample">
+
+            <div class="form-group" >
+                <label  >Nom </label>
+
+                    {{ form_widget(form.nom) }}
+                 {{ form_errors(form.nom) }}
+
+
+            </div>
+            <div class="form-group">
+                <label >Désignation</label>
+                {{ form_widget(form.designation) }}
+                {{ form_errors(form.designation) }}
+            </div>
+            <div class="form-group">
+                <label>Prix</label>
+                {{ form_widget(form.prix) }}
+                {{ form_errors(form.designation) }}
+
+
+            </div>
+            <div class="form-group">
+                <label >Quantité </label>
+                {{ form_widget(form.quantite) }}
+                {{ form_errors(form.quantite) }}
+
+            </div>
+            <div class="form-group" >
+                <label >Catégorie </label><br>
+                {{ form_widget(form.categories) }}
+                {{ form_errors(form.categories) }}
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label>Image</label>
+
+                <div class="input-group col-xs-12">
+
+                    <span class="input-group-append">
+
+                         {{ form_widget(form.image) }}
+                          </span>
+                </div>
+
+
+            </div>
+
+
+

@@ -3,7 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -18,89 +24,57 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $categorie_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $produit_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $panier_id;
-
-    /**
+     *
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
+
      */
     private $designation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
+
     private $quantite;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
     private $prix;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $fournisseur_id;
-
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank (message="ce champ doit etre remplie")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+
      */
     private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categories;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Panier::class, inversedBy="produits")
+     */
+    private $paniers;
+
+    public function __construct()
+    {
+        $this->paniers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategorieId(): ?int
-    {
-        return $this->categorie_id;
-    }
-
-    public function setCategorieId(int $categorie_id): self
-    {
-        $this->categorie_id = $categorie_id;
-
-        return $this;
-    }
-
-    public function getProduitId(): ?int
-    {
-        return $this->produit_id;
-    }
-
-    public function setProduitId(int $produit_id): self
-    {
-        $this->produit_id = $produit_id;
-
-        return $this;
-    }
-
-    public function getPanierId(): ?int
-    {
-        return $this->panier_id;
-    }
-
-    public function setPanierId(int $panier_id): self
-    {
-        $this->panier_id = $panier_id;
-
-        return $this;
     }
 
     public function getDesignation(): ?string
@@ -138,19 +112,6 @@ class Produit
 
         return $this;
     }
-
-    public function getFournisseurId(): ?int
-    {
-        return $this->fournisseur_id;
-    }
-
-    public function setFournisseurId(int $fournisseur_id): self
-    {
-        $this->fournisseur_id = $fournisseur_id;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -163,15 +124,58 @@ class Produit
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage( $image)
     {
         $this->image = $image;
 
         return $this;
     }
+
+    public function getCategories(): ?Categorie
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categorie $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panier>
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(Panier $panier): self
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers[] = $panier;
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): self
+    {
+        $this->paniers->removeElement($panier);
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+
 }

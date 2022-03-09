@@ -13,7 +13,7 @@ class BackController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('back/index.html.twig', [
+        return $this->render('back/back.html.twig', [
             'controller_name' => 'BackController',
         ]);
     }

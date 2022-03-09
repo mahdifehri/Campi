@@ -1,0 +1,21 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Editer un Produit {% endblock %}
+
+{% block body %}
+
+    <h1>Editer un Produit </h1>
+
+
+    {{ include('produit/_form.html.twig') }}
+    <button type="submit" class="btn btn-primary mr-2">Editer </button>
+    <button class="btn btn-dark">Cancel</button>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </form>
+    </div>
+    </div>
+
+
+
+{% endblock %}

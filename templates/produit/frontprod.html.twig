@@ -1,0 +1,62 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Campi</p>
+                        <h1>Produits</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- products -->
+    <div class="product-section mt-150 mb-150">
+        <div>
+            {{ include('produit/recherche.html.twig') }}
+        </div>
+        <div class="container" style="margin-top: 100px">
+            <div class="row product-lists">
+                {% for produit in produits %}
+                    <div class="col-lg-4 col-md-6 text-center berry">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <img  src="{{ asset('photo/' ~ produit.image) }}" alt="">
+                            </div>
+                            <h3>{{ produit.nom }}</h3>
+                            <p class="product-price">{{ produit.prix }} </p>
+                            {% if produit.quantite == 0 %}
+                                <p style="color: red"><i class="fas fa-exclamation-triangle"></i> Rupture de stock</p>
+                            {% else %}
+                                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter Panier</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="pagination-wrap">
+                        <ul>
+                            <li><a href="{{ path('produit') }}">prev</a></li>
+                            <li><a href="{{ path('produit') }}">1</a></li>
+                            <li><a class="active" href="{{ path('produit') }}">2</a></li>
+                            <li><a href="{{ path('produit') }}">3</a></li>
+                            <li><a href="{{ path('produit') }}">next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end products -->
+{% endblock %}

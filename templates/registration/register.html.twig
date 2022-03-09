@@ -17,18 +17,19 @@
     </div>
     <!-- end breadcrumb section -->
 <div id="containerLOGIN">
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm)}}
         {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.prenom) }}
         {{ form_row(registrationForm.numerotelephone) }}
-        {{ form_row(registrationForm.photoUser) }}
         {{ form_row(registrationForm.email) }}
+         {{ form_row(registrationForm.NomRole) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm.photoUser) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">M'inscrire</button>
+        <button type="submit" class="btn btn-primary">M'inscrire</button>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}
