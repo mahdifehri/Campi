@@ -7,8 +7,8 @@
 <!--PreLoader Ends-->
 
 <!-- header -->
-<div class="top-header-area" id="sticker" style="background-color: #362b25">
-    <div class="container" >
+<div class="top-header-area" id="sticker">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
                 <div class="main-menu-wrap">
@@ -48,7 +48,7 @@
                                     <li><a href="single-news.html">Single News</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                             <li><a href="shop.html">Shop</a>
                                 <ul class="sub-menu">
                                     <li><a href="shop.html">Shop</a></li>
@@ -57,12 +57,6 @@
                                     <li><a href="cart.html">Cart</a></li>
                                 </ul>
                             </li>
-                            {% if is_granted('ROLE_USER') %}
-                            <li><a href="profil.html">Profile</a></li>
-                            {% endif %}
-                             {% if is_granted('ROLE_USER') %}
-                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-                            {% endif %}
                             <li>
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
@@ -97,12 +91,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container" style="height: 200px">
-    <div class="row">
-        <div> Hello</div>
-    </div>
-
 </div>
 <!-- end search area -->
 
