@@ -52,12 +52,12 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="{{ asset("back-office/images/faces/face15.jpg") }}" alt="">
+                  <img class="img-xs rounded-circle " src="{{ asset('photo/' ~ app.user.photoUser) }}" alt="">
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                  <span>Gold Member</span>
+                  <h5 class="mb-0 font-weight-normal">{{ app.user.prenom }}</h5>
+                  <span>{{ app.user.NomRole }}</span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -340,8 +340,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                             <div class="navbar-profile">
-                                <img class="img-xs rounded-circle" src="{{ asset("back-office/images/faces/face15.jpg") }}" alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                <img class="img-xs rounded-circle" src="{{ asset('photo/' ~ app.user.photoUser) }}" alt="">
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ app.user.prenom }}</p>
                                 <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                             </div>
                         </a>

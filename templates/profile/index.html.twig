@@ -1,0 +1,27 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <h1>Mon Profile</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+<div id="containerprofile">
+ {{ app.user.nom}}<br>
+ {{ app.user.prenom}}<br>
+ {{ app.user.email}}<br>
+ {{ app.user.numerotelephone}}<br>
+  <img class="img-xs rounded-circle" src="{{ asset('photo/' ~ app.user.photoUser) }}" alt="" width="100" heigth="100">
+
+</div>
+{% endblock %}

@@ -18,12 +18,27 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('numerotelephone')
-            ->add('NomRole')
+            ->add('nom' , \Symfony\Component\Form\Extension\Core\Type\TextType::class , 
+            ["attr" =>[
+                "class"=>"form-control" , 'placeholder' => 'Donner votre nom']
+            ])
+            ->add('prenom', \Symfony\Component\Form\Extension\Core\Type\TextType::class , 
+            ["attr" =>[
+                "class"=>"form-control" , 'placeholder' => 'Donner votre prenom']
+            ])
+            ->add('numerotelephone', \Symfony\Component\Form\Extension\Core\Type\TextType::class , 
+            ["attr" =>[
+                "class"=>"form-control" , 'placeholder' => 'Donner votre numero telephone']
+            ])
+            ->add('NomRole', \Symfony\Component\Form\Extension\Core\Type\TextType::class , 
+            ["attr" =>[
+                "class"=>"form-control" , 'placeholder' => 'A pour Admin , S pour Simple utilisateur , F pour Fournisseur']
+            ])
             ->add('photoUser' , FileType::class, array('data_class'=> null, 'required' => false))
-            ->add('email')
+            ->add('email' , \Symfony\Component\Form\Extension\Core\Type\TextType::class , 
+            ["attr" =>[
+                "class"=>"form-control" , 'placeholder' => 'Donner votre email']
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -36,10 +51,10 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password' , "class"=>"form-control" , 'placeholder' => 'Donner votre mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'SVP Donner votre  mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
