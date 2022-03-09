@@ -7,48 +7,48 @@
 
 
 
-    <div class="card-body">
         <h4 class="card-title">Liste Des Categories</h4>
+        <a href="{{ path('categorie_add') }}" class="btn btn-primary">Ajouter</a>
 
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th> Id </th>
-                    <th> Nom Categorie </th>
-                    <th> Description </th>
-                    <th> Action </th>
-
-                </tr>
-                </thead>
-                <tbody>
+    <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center">
                 {% for categorie in categories %}
-                    <tr>
-                        <td class="py-1">
-                            {{ categorie.id }}
-                        </td>
-                        <td> {{ categorie.nomCategorie }} </td>
-                        <td>  {{ categorie.description }}</td>
-                        <td>
-                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Modifier</a>
-                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}">Supprimer</a>
-                            <a href="{{ path('categorie_add') }}">Ajouter</a>
-                        </td>
-                    </tr>
+
+
+                    <div class="card col-4" style="text-align: center; margin: 50px">
+                        <h5 class="card-header">{{ categorie.id }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ categorie.nomCategorie }}</h5>
+                            <p class="card-text">{{ categorie.description }}</p>
+                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('categorie_delete', {'id': categorie.id}) }}" class="btn btn-primary">Supprimer</a>
+                        </div>
+                    </div>
+
+
+
                 {% else %}
-                    <tr>
-                        <td colspan="8">no records found</td>
-                    </tr>
+                        <div>no records found</div>
                 {% endfor %}
 
-
-                </tbody>
-            </table>
-        </div>
     </div>
 
-
+    {% if not paginator == false %}
+        <!--Pagination Start  -->
+        <div class="pagination-area text-center navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                {{ knp_pagination_render(categories) }}
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination End  -->
+    {% endif %}
 
 
 

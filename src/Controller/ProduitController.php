@@ -28,13 +28,6 @@ class ProduitController extends AbstractController
     public function index(ProduitRepository $produitRepository,Request $request,PaginatorInterface $paginator): Response
     {
 
-        $produits = $produitRepository->findAll();
-
-        $produits = $paginator->paginate(
-            $produits,
-            $request->query->getInt('page',1),
-            4
-        );
 
         $data = new SearchData();
         $form = $this->createForm(\App\Form\SearchType::class,$data);

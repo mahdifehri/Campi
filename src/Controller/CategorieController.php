@@ -7,10 +7,13 @@ use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 
 use App\Repository\ProduitRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -19,11 +22,34 @@ class CategorieController extends AbstractController
     /**
      * @Route("/categorie", name="categorie")
      */
-    public function index(CategorieRepository $categorieRepository): Response
+    public function index(CategorieRepository $categorieRepository, PaginatorInterface $paginator, Request $request, MailerInterface $mailer): Response
     {
-        return $this->render('categorie/listecategorie.html.twig', [
-            'categories' => $categorieRepository->FindAll(),
 
+        $email = (new Email())
+            ->from('campi.pidev@gmail.com')
+            ->to("ahmed.derouiche@esprit.tn")
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Campi.Tn-Evénement validé')
+            ->text('Sending emails is fun again!')
+            ->html('<p>Bonjour, On est ravi de vous informer que votre événement a été validé !</p>');
+
+        $mailer->send($email);
+
+
+
+
+
+
+        return $this->render('categorie/listecategorie.html.twig', [
+            'paginator' => true,
+            'categories' => $paginator->paginate(
+                $categorieRepository->findAllQuery(),
+                $request->query->getInt('page', 1),
+                2
+            )
         ]);
     }
 
