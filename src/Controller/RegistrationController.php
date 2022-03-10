@@ -54,10 +54,24 @@ class RegistrationController extends AbstractController
         ]);
     }
      /**
-     * @Route("/admin", name="user_index", methods={"GET"})
+     * @Route("/admin", name="user_index")
      */
     public function index(Request $request ,UserRepository $userRepository): Response
     {
+        $propertySearch = new PropertySearch();
+        $form= $this->createForm(PropertySearchType::class, $propertySearch);
+        $form->handleRequest($request);
+        $users=[];
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $nom = $propertySearch->getNom();
+            if ($nom!="")
+                $users= $this->getDoctrine()->getRepository(User::class)->findBy(['nom' => $nom] );
+            else
+                $users= $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        }
+        return $this->render('back/index.html.twig',[ 'form' => $form->createView(), 'users' => $users]);
         return $this->render('back/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);

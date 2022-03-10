@@ -92,6 +92,7 @@ class PostController extends AbstractController
             $censor = new CensorWords;
             $badwords= $censor->setDictionary('fr');
             $string = $censor->censorString($contenu);
+            $commentaire->setContenu($string['clean']);
             $commentaire->setPosts($post);
             $commentaire->setIdUser(1);
             $commentaire->setIdPost(1);

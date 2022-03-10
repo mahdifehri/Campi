@@ -4,7 +4,18 @@
 
 {% block body %}
 <h1>User index</h1>
-
+    {{ form_start(form) }}
+    <div class="form-row align-items-end">
+        <div class="col">
+            {{ form_row(form.nom) }}
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <button type="submit"class="btn btn-success">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
 
 <table class="table">
         <thead>
@@ -46,8 +57,8 @@
                 <td><img src="{{ asset('photo/' ~ user.photoUser) }}" 
                 alt="" style="width: 5000px:height:5000px"></td>
                 <td>
-                <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                <a href="{{ path('role_user', {'id': user.id}) }}">editRole</a>
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-success">edit</a>
+                <a href="{{ path('role_user', {'id': user.id}) }}" class="btn btn-success">editRole</a>
                 </td>
             </tr>
         {% else %}

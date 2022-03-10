@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -37,17 +38,26 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\NotBlank(message="le nom est necessaire")
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
+     * @Assert\NotBlank(message="le prenom est necessaire")
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
+     * @Assert\NotBlank(message="le numero telephone est necessaire")
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *      minMessage = "Votre numero doit contenir 8 chiffres",
+     *      maxMessage = "Votre numero doit contenir 8 chiffres"
+     * )
      */
     private $numerotelephone;
 
@@ -57,6 +67,7 @@ class User implements UserInterface
     private $photoUser;
 
     /**
+     * @Assert\NotBlank(message="le nom de role est necessaire")
      * @ORM\Column(type="string", length=255)
      */
     private $NomRole;

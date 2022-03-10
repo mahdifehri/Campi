@@ -60,6 +60,16 @@ class DestinationController extends AbstractController
             "destinations"=>  $destinationRepository->findAll()
         ]);
     }
+    /**
+     * @Route("front/destination", name="destination_front")
+     * @param DestinationRepository $destinationRepository
+     */
+    public function affichefront(DestinationRepository $destinationRepository): Response
+    {
+        return $this->render('front/destination/affiche.html.twig',[
+            "destinations"=>  $destinationRepository->findAll()
+        ]);
+    }
 
 
     /**
@@ -95,7 +105,7 @@ class DestinationController extends AbstractController
         ]);
     }
     /**
-     * @Route("front/destination/{id}", name="destination_show", methods={"GET"})
+     * @Route("front/destination/{id}", name="destination_show")
      */
     public function show(Destination $destination): Response
     {

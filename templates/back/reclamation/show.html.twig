@@ -54,7 +54,7 @@
                                 {% if reclamation.File == NULL %}
                                     <td><i class="mdi mdi-close"></i></td>
                                 {% else %}
-                                    <td><a href="Uploads/{{ reclamation.File }}">see</a></td>
+                                    <td>{{ reclamation.File }} <i class="mdi mdi-download"></i></td>
                                 {% endif %}
                             </tr>
                             <tr>
@@ -67,12 +67,12 @@
                                     {% elseif reclamation.Flag == 1 %}
                                     <a href="{{ path('reclamation_unflag', {"id": reclamation.getIdRec()}) }}"><i class="mdi mdi-flag-outline" style="color:mediumseagreen">unflag</i></a>
                                     {% endif %}
-                                    <a href="{{ path('reclamation_pdf', {"id": reclamation.getIdRec()}) }}"><i class="btn btn-inverse-success btn-fw" style="color:mediumseagreen">Pdf</i></a>
+                                    <a href="{{ path('reclamation_pdf', {"id": reclamation.getIdRec()}) }}"><i class="mdi mdi-file-pdf" style="margin-left: 5px"></i>Pdf</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <a href="{{ path('reclamation') }}"><i class="btn btn-inverse-success btn-fw" style="color:mediumseagreen">Retour</i></a>
+                    <a href="{{ path('reclamation') }}"><i class="btn btn-outline-secondary btn-sm" style="margin-left: 10px">Retour</i></a>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@ class Destination
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="la destination est necessaire")
      */
     private $nom_dest;
 
@@ -33,18 +33,22 @@ class Destination
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
+     * @Assert\PositiveOrZero
+     * @Assert\Type(type="integer",message="le nombre doit etre de type entier.")
      */
     private $nbr_part_dest;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
+     * @Assert\PositiveOrZero
+     * @Assert\Type(type="integer",message="le nombre doit etre de type entier.")
      */
     private $event_dest;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
+     *
      */
     private $image_dest;
 

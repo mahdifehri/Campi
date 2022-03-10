@@ -3,6 +3,18 @@
 {% block title %}Votre panier{% endblock %}
 
 {% block body %}
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Cart</p>
+                        <h1>Campi</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="bg-light p-3">
         <h1 style="text-align: center">Votre panier</h1>
     </section>
@@ -51,7 +63,7 @@
             <td class="text-end">{{ total }} €</td>
             <td>
                 <a href="{{path("cart_delete_all")}}" class="btn btn-danger">
-                    dellet
+                    delete
                     <i class="bi bi-cart-x"></i>
                 </a>
             </td>

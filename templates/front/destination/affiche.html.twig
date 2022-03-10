@@ -1,0 +1,39 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Destinations{% endblock %}
+{% block body %}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Campi</p>
+                    <h1>Destinations!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- latest news -->
+
+<div class="latest-news mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            {% for destination in destinations %}
+            <div class="col-lg-4 col-md-6">
+                <div class="single-latest-news">
+                    <a href="{{ path('destination_show', {"id": destination.getId()}) }}"><div class="latest-news-bg news-bg-1"><img src="{{ asset ('photo/' ~ destination.imageDest) }}" alt="{{ destination.imageDest }}" style="width: 285px;height: 190px"> </div></a>
+                    <div class="news-text-box">
+                        <h3><a href="{{ path('destination_show', {"id": destination.getId()}) }}">{{ destination.nomDest }}</a></h3>
+                        <a href="{{ path('destination_show', {"id": destination.getId()}) }}" class="read-more-btn">Afficher les details <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+</div>
+    <!-- end latest news -->
+{% endblock %}

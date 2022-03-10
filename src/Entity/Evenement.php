@@ -47,7 +47,7 @@ class Evenement
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\PositiveOrZero
-     * @Assert\Type(type="integer",message="le prix doit etre de type intier.")
+     * @Assert\Type(type="integer",message="le prix doit etre de type entier.")
      */
     private $prix;
 

@@ -18,13 +18,13 @@ class ContactType extends AbstractType
                 "class"=>"form-control" , 'placeholder' => 'Donner votre nom']
             ])
             ->add('email', EmailType::class  , ["attr" =>[
-                "class"=>"form-control" , 'placeholder' => 'Donner votre nom']
+                "class"=>"form-control" , 'placeholder' => 'Donner votre email']
             ])
             ->add('message',TextareaType::class  , ["attr" =>[
-                "class"=>"form-control" , 'placeholder' => 'Donner votre nom']
+                "class"=>"form-control" , 'placeholder' => 'Saisir votre text']
             ])
             ->add('envoyer',SubmitType::class  , ["attr" =>[
-                "class"=>"btn btn-primary" , 'placeholder' => 'Donner votre nom']
+                "class"=>"btn btn-primary"]
             ])
         ;
     }
