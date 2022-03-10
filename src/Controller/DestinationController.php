@@ -99,8 +99,10 @@ class DestinationController extends AbstractController
      */
     public function show(Destination $destination): Response
     {
+        $myurl = 'https://www.google.com/maps/place/'.$destination->getNomDest();
         return $this->render('front/destination/show.html.twig', [
             'destination' => $destination,
+            'myurl' => $myurl,
         ]);
     }
 }

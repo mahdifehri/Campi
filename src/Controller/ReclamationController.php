@@ -31,7 +31,7 @@ class ReclamationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($reclamation->getFile()=="")
-                $reclamation->setFile("no_image.jpg");
+                $reclamation->setFile("");
             else
             {
                 $file = new File($reclamation->getFile());
@@ -43,7 +43,10 @@ class ReclamationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reclamation);
             $entityManager->flush();
-            return $this->redirectToRoute('reclamation_new');
+            $idd = $reclamation->getIdRec();
+            return $this->redirectToRoute("reclamation_show",[
+                'id' => $idd
+            ]);
 
         }
 
