@@ -1,0 +1,36 @@
+{% extends 'base-front.html.twig' %}
+{% block body %}
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+
+                    <img src="{{ asset('assets/' ~ produit.image) }}">
+                </div>
+
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h3> {{ produit.nom }} </h3>
+                    <p class="single-product-pricing"> {{ produit.prix }} DT</p>
+                    <p style="color: #0a0a0a;font-family: 'Times New Roman';font-weight: bold">{{ produit.designation }}.</p>
+                    <div class="single-product-form">
+                        <form action="index.html">
+                            <input type="number" placeholder="{{ produit.quantite }}">
+                        </form>
+
+                    </div>
+                    <h4>Share:</h4>
+                    <ul class="product-share">
+                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                        <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

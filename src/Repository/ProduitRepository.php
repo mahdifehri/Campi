@@ -6,6 +6,8 @@ use App\Data\SearchData;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
@@ -49,6 +51,7 @@ class ProduitRepository extends ServiceEntityRepository
     }
     */
 
+
     public function findSearch(SearchData $search) :array
     {
         $query = $this
@@ -81,7 +84,9 @@ class ProduitRepository extends ServiceEntityRepository
                 ->setParameter('categories', $search->categories);
         }
 
-        return $query->getQuery()->getResult();
+       return $query->getQuery()->getResult();
+
+
 
     }
 

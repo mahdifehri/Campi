@@ -13,10 +13,13 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+    <button id="test" type="submit" class="btn btn-primary w-100">Rechercher</button>
     {{ form_end(form) }}
 
+<script>
 
+    document.getElementById('test').addEventListener('click',window.history.pushState("object or string", "Title", "http://127.0.0.1:8000/front_prod"))
+</script>
 
 
 </div>
