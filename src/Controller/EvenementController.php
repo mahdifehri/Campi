@@ -11,6 +11,7 @@ use App\Repository\EvenementRepository;
 use App\Repository\ParticipantRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,7 +63,10 @@ class EvenementController extends AbstractController
         $form= $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
-        {
+        {   $file=new File($evenement->getImage());
+            $fileName=md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'),$fileName);
+            $evenement->setImage($fileName);
             $evenement->setUsers($userr);
             $em =$this->getDoctrine()->getManager();
             $em->persist($evenement);

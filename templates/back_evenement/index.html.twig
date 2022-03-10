@@ -29,7 +29,7 @@
                             <td> {{ evenement.users.id}},{{ evenement.users.prenom}} {{ evenement.users.nom}} </td>
 
                             <td class="py-1">
-                                <img src="{{ evenement.image }}" alt=" {{ evenement.image }}">
+                                <img src="{{ asset('photo/' ~ evenement.image) }}">
                             </td>
                             <td> {{ evenement.description }} </td>
                             <td> {{ evenement.destination }} </td>

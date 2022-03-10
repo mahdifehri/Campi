@@ -100,6 +100,8 @@
         <li class="nav-item nav-category">
             <span class="nav-link">Navigation</span>
         </li>
+            {% if is_granted('ROLE_ADMIN') %}
+
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ path('user_index') }}">
               <span class="menu-icon">
@@ -200,7 +202,25 @@
                     <span class="menu-title">Postes</span>
                 </a>
             </li>
+            {% endif %}
+            {% if is_granted('ROLE_FOUR') %}
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+                        <span class="menu-title">Produits</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="{{ path('produit_add') }}">Ajouter un Produit</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{ path('produit') }}">Listes Des Produits</a></li>
 
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
 
         </ul>
     </nav>
@@ -386,7 +406,7 @@
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Log out</p>
+                                    <p class="preview-subject mb-1"><a href="{{ path('app_logout') }}">Déconnexion</a></p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>

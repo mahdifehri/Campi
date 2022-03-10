@@ -35,7 +35,18 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/mesevenements, roles: ROLE_USER }
+        - { path: ^/mespostes, roles: ROLE_USER }
         - { path: ^/produit, roles: ROLE_FOUR }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/categorie, roles: ROLE_ADMIN }
+        - { path: ^/back/evenement, roles: ROLE_ADMIN }
+        - { path: ^/commande, roles: ROLE_ADMIN }
+        - { path: ^/back/destination, roles: ROLE_ADMIN }
+        - { path: ^/factureback, roles: ROLE_ADMIN }
+        - { path: ^/back/reclamation, roles: ROLE_ADMIN }
+        - { path: ^/back/post, roles: ROLE_ADMIN }
+        - { path: ^/produit, roles: ROLE_ADMIN }
     role_hierarchy:
         ROLE_EDITOR: ROLE_USER
         ROLE_ADMIN: ROLE_EDITOR
