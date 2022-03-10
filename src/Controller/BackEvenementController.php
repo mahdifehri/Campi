@@ -86,7 +86,7 @@ class BackEvenementController extends AbstractController
                 //->priority(Email::PRIORITY_HIGH)
                 ->subject('Campi.Tn-Evénement validé')
                 ->text('Sending emails is fun again!')
-                ->html('<p>Bonjour, On est ravi de vous informer que votre événement a été validé !</p>');
+                ->html('<p>Bonjour ' . $evenement->getUsers()->getNom() . ' ' . $evenement->getUsers()->getPrenom() . ', On est ravi de vous informer que votre événement a été validé !</p>');
 
             $mailer->send($email);
 
@@ -110,7 +110,7 @@ class BackEvenementController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Campi.Tn-Evénement refusé')
             ->text('Sending emails is fun again!')
-            ->html('<p>Bonjour, Nous avons le regret de vous informer que votre événement a été refusé !</p>');
+            ->html('<p>Bonjour  ' . $evenement->getUsers()->getNom() . ' ' . $evenement->getUsers()->getPrenom() . ', Nous avons le regret de vous informer que votre événement a été refusé !</p>');
 
         $mailer->send($email);
         $em = $this->getDoctrine()->getManager();

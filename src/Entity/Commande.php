@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -38,6 +40,22 @@ class Commande
      *  @Assert\NotBlank
      */
     private $total_cmd;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Facture::class, mappedBy="Commande")
+     */
+    private $factures;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Produit::class, inversedBy="commandes")
+     */
+    private $Produit;
+
+    public function __construct()
+    {
+        $this->factures = new ArrayCollection();
+        $this->Produit = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +94,57 @@ class Commande
     public function setTotalCmd(float $total_cmd): self
     {
         $this->total_cmd = $total_cmd;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Facture>
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->addCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            $facture->removeCommande($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduit(): Collection
+    {
+        return $this->Produit;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->Produit->contains($produit)) {
+            $this->Produit[] = $produit;
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        $this->Produit->removeElement($produit);
 
         return $this;
     }

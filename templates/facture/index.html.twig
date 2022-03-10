@@ -213,7 +213,7 @@
                 <th class="text-left">NumFacture</th>
                 <th class="text-right">Total PRICE</th>
                 <th class="text-left">Date</th>
-                <th class="text-left">Action</th>
+                <th class="text-left">Action:        <a class="btn btn-dark" href="{{ 'tri' }}">Tri</a></th>
             </tr>
             </tr>
         </thead>
@@ -238,7 +238,7 @@
                     <a href="{{ path('facture_show', {'id': facture.id}) }}" class="btn btn-danger" class="btn btn-danger">Show</a>
                     <a href="{{ path('facture_inddex', {'id': facture.id}) }}" class="btn btn-warning" class="btn btn-danger">Print</a>
                     <a class="btn btn-primary float-right" href="{{ 'imprimer_f' }}">PDF</a>
-                    <a class="btn btn-primary float-right" href="{{ 'tri' }}">Tri</a>
+
 
 
                 </td>

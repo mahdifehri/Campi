@@ -9,10 +9,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>NumCmd</th>
+
                 <th>DateCmd</th>
                 <th>TotalCmd</th>
-                <th>actions</th>
+                <th>actions </th>
             </tr>
         </thead>
         <tbody>
@@ -21,12 +21,13 @@
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
-                <td>{{ commande.NumCmd }}</td>
+
                 <td>{{ commande.DateCmd ? commande.DateCmd|date('Y-m-d') : '' }}</td>
                 <td>{{ commande.TotalCmd }}</td>
                 <td>
                     <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
                     <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+
 
                 </td>
             </tr>

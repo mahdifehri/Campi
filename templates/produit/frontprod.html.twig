@@ -23,39 +23,44 @@
         <div>
             {{ include('produit/recherche.html.twig') }}
         </div>
-        <div class="container" style="margin-top: 100px">
+        <div class="container" di>
             <div class="row product-lists">
                 {% for produit in produits %}
                     <div class="col-lg-4 col-md-6 text-center berry">
                         <div class="single-product-item">
                             <div class="product-image">
-                                <img  src="{{ asset('photo/' ~ produit.image) }}" alt="">
+                                <a href="{{ path('produit_detail', {"id": produit.getId()}) }}"><img  src="{{ asset('photo/' ~ produit.image) }}" alt=""></a>
                             </div>
                             <h3>{{ produit.nom }}</h3>
                             <p class="product-price">{{ produit.prix }} </p>
                             {% if produit.quantite == 0 %}
                                 <p style="color: red"><i class="fas fa-exclamation-triangle"></i> Rupture de stock</p>
                             {% else %}
-                                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter Panier</a>
+                                <a href="{{path("cart_add", {id: produit.id})}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Ajouter Panieeeer</a>
                             {% endif %}
                         </div>
                     </div>
 
                 {% endfor %}
             </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="pagination-wrap">
-                        <ul>
-                            <li><a href="{{ path('produit') }}">prev</a></li>
-                            <li><a href="{{ path('produit') }}">1</a></li>
-                            <li><a class="active" href="{{ path('produit') }}">2</a></li>
-                            <li><a href="{{ path('produit') }}">3</a></li>
-                            <li><a href="{{ path('produit') }}">next</a></li>
-                        </ul>
+            {% if not paginator == false %}
+                <!--Pagination Start  -->
+                <div class="pagination-area text-center navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="single-wrap d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                        {{ knp_pagination_render(produits) }}
+                                    </nav>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!--Pagination End  -->
+            {% endif %}
         </div>
     </div>
     <!-- end products -->

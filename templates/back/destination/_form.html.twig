@@ -1,0 +1,30 @@
+    <div class="form-group">
+        <label>Nom du lieu: </label>
+        {{ form_widget(form.nom_dest) }}
+        {{ form_errors(form.nom_dest) }}
+    </div>
+    <div class="form-group">
+        <label>Region: </label>
+        {{ form_widget(form.localisation_dest) }}
+        {{ form_errors(form.localisation_dest) }}
+    </div>
+    <div class="form-group">
+        <label>Nombre de participants: </label>
+        {{ form_widget(form.nbr_part_dest) }}
+        {{ form_errors(form.nbr_part_dest) }}
+    </div>
+    <div class="form-group">
+        <label>Nombre d'evenemments: </label>
+        {{ form_widget(form.event_dest) }}
+        {{ form_errors(form.event_dest) }}
+    </div>
+    <div class="form-group">
+         <label>Image: </label>
+        {{ form_widget(form.image_dest) }}
+        {{ form_errors(form.image_dest) }}
+    </div>
+    <div class="form-group" style="align-self: center">
+        <button type="submit" value="save" class="btn btn-outline-success btn-fw">{{ button_label|default('Effectuer') }}</button>
+    </div>
+    {{ form_end(form) }}
+

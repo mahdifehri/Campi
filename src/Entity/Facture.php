@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FactureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Facture
      * @ORM\Column(type="date")
      */
     private $dateFact;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Commande::class, inversedBy="factures")
+     */
+    private $Commande;
+
+    public function __construct()
+    {
+        $this->Commande = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,30 @@ class Facture
     public function setDateFact(\DateTimeInterface $dateFact): self
     {
         $this->dateFact = $dateFact;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommande(): Collection
+    {
+        return $this->Commande;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->Commande->contains($commande)) {
+            $this->Commande[] = $commande;
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        $this->Commande->removeElement($commande);
 
         return $this;
     }

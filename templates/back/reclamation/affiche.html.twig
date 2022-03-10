@@ -1,0 +1,109 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Reclamations{% endblock %}
+
+{% block body %}
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Reclamations</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Type </th>
+                            <th> Destination</th>
+                            <th> Description </th>
+                            <th> Etat</th>
+                            <th> Flag </th>
+                            <th> Fichier </th>
+                            <th> Consulter </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reclamation in reclamations %}
+                        <tr>
+                        {% if reclamation.EtatRec == "En attente" %}
+                            <td> {{ reclamation.idRec }} </td>
+                            <td> {{ reclamation.typeRec }} </td>
+                            <td> {{reclamation.destination.getNomDest() }}</td>
+                            <td> {{ reclamation.descriptionRec }} </td>
+                            <td><label class="badge badge-warning">En attente</label></td>
+                            {% if reclamation.Flag == 0 %}
+                                <td><i class="mdi mdi-flag-outline" ></i>
+                                </td>
+                            {% elseif reclamation.Flag == 1 %}
+                                <td><p class="mdi mdi-flag-variant" style="color: #832226"></p>
+                                </td>
+                            {% endif %}
+                            {% if reclamation.File == NULL %}
+                                <td><i class="mdi mdi-close"></i></td>
+                            {% else %}
+                                <td><i class="mdi mdi-attachment"></i></td>
+                            {% endif %}
+                            <td ><a href="{{ path('reclamation_show_back', {"id": reclamation.getIdRec()}) }}" ><i class="mdi mdi-file"></i></a></td>
+                        {% endif %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Archive</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Type </th>
+                            <th> Destination</th>
+                            <th> Description </th>
+                            <th> Etat</th>
+                            <th> Flag </th>
+                            <th> Fichier </th>
+                            <th> Consulter </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reclamation in reclamations %}
+                        <tr>
+                          {% if reclamation.EtatRec != "En attente" %}
+                            <td> {{ reclamation.idRec }} </td>
+                            <td> {{ reclamation.typeRec }} </td>
+                            <td> {{reclamation.destination.getNomDest() }}</td>
+                            <td> {{ reclamation.descriptionRec }} </td>
+                            {% if reclamation.EtatRec == "InValide" %}
+                                <td><label class="badge badge-danger">InValide</label></td>
+                            {% elseif reclamation.EtatRec == "Treated" %}
+                                <td><label class="badge badge-success">Treated</label></td>
+                            {% endif %}
+                            {% if reclamation.Flag == 0 %}
+                                <td><i class="mdi mdi-flag-outline" ></i>
+                                </td>
+                            {% elseif reclamation.Flag == 1 %}
+                                <td><p class="mdi mdi-flag-variant" style="color: #832226"></p>
+                                </td>
+                            {% endif %}
+                            {% if reclamation.File == NULL %}
+                                <td><i class="mdi mdi-close"></i></td>
+                            {% else %}
+                                <td><i class="mdi mdi-attachment"></i></td>
+                            {% endif %}
+                            <td ><a href="{{ path('reclamation_show_back', {"id": reclamation.getIdRec()}) }}" ><i class="mdi mdi-file"></i></a></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

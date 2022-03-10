@@ -1,0 +1,53 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Ma Reclamation{% endblock %}
+
+{% block body %}
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Consulter</p>
+                        <h1>Ma reclamation</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+    <div class="cart-section mt-150 mb-150">
+        <div class="container">
+                <div class="col-lg-4" style="margin-left: auto;margin-right: auto">
+                    <div class="total-section">
+                        <table class="total-table">
+                            <tbody>
+                            <tr class="table-total-row">
+                                <td>Type</td>
+                                <td>{{ reclamation.typeRec }}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Destination</strong></td>
+                                <td>{{reclamation.destination.getNomDest() }}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Description: </strong></td>
+                                <td>{{ reclamation.descriptionRec }}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Etat: </strong></td>
+                                <td>{{ reclamation.etatRec }}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Fichier: </strong></td>
+                                <td>{{ reclamation.file }} </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Destinations{% endblock %}
+
+{% block body %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Destinations</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Nom </th>
+                            <th> Localisation </th>
+                            <th> Nombre de participants </th>
+                            <th> Nombre d'evennements</th>
+                            <th> Image </th>
+                            <th> Supprimer </th>
+                            <th> Modifier </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for destination in destinations %}
+                            <tr>
+                                <td> {{ destination.id }} </td>
+                                <td> {{ destination.nomDest }} </td>
+                                <td> {{ destination.localisationDest }}</td>
+                                <td> {{ destination.nbrPartDest }} </td>
+                                <td> {{ destination.eventDest }} </td>
+                                <td class="py-1">
+                                    <img src="{{ asset ('photo/' ~ destination.imageDest) }}" alt="{{ destination.imageDest }}" style="width: 50px;height: 50px" >
+                                </td>
+                                <td ><a href="{{ path('destination_delete', {"id": destination.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="badge badge-outline-danger">Delete</i></a></td>
+                                <td ><a href="{{ path('destination_edit', {"id": destination.id}) }}"><i class="badge badge-outline-warning">Edit</i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

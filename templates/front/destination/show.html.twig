@@ -1,0 +1,104 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}{{ destination.nomDest }}{% endblock %}
+{% block body %}
+     <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Destination</p>
+                        <h1>{{ destination.nomDest }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+    <!-- single article section -->
+    <div class="mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="single-article-section">
+                        <div class="single-article-text">
+                            <div class="single-artcile-bg">
+                                <img src="{{ asset ('photo/' ~ destination.imageDest) }}" alt="{{destination.imageDest}}" style="width: auto;height: auto">
+                            </div>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <h2>{{ destination.nomDest }}</h2>
+                            <div class="col-lg-4" style="margin-left: auto;margin-right: auto">
+                                <div class="total-section">
+                                    <table class="total-table">
+                                        <thead>
+                                        <tr>
+                                            <th> Nom </th>
+                                            <th> Localisation </th>
+                                            <th> Nombre de participants </th>
+                                            <th> Nombre d'evennements</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td> {{ destination.nomDest }} </td>
+                                            <td> {{ destination.localisationDest }}</td>
+                                            <td> {{ destination.nbrPartDest }} </td>
+                                            <td> {{ destination.eventDest }} </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar-section">
+                        <div class="recent-posts">
+                            <h4>Recent Posts</h4>
+                            <ul>
+                                <li><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></li>
+                            </ul>
+                        </div>
+                        <div class="archive-posts">
+                            <h4>Archive Posts</h4>
+                            <ul>
+                                <li><a href="single-news.html">JAN 2019 (5)</a></li>
+                            </ul>
+                        </div>
+                        <div class="tag-section">
+                            <h4>Tags</h4>
+                            <ul>
+                                <li><a href="single-news.html">{{ destination.localisationDest }}</a></li>
+                            </ul>
+                        </div>
+                        <!-- Qr code -->
+                        <div class="card single-accordion">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="True" aria-controls="collapseTwo">
+                                        Direction!
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="shipping-address-form">
+                                        <img src="{{ qr_code_url(myurl) }}" alt="myqr" style="margin-left: auto;margin-right: auto" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

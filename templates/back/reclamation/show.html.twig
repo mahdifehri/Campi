@@ -1,0 +1,81 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Reclamations{% endblock %}
+
+{% block body %}
+    <div class="col-lg-12 grid-margin stretch-card" style="margin-left: auto;margin-right: auto">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Reclamation</h4>
+                <p class="card-description"> Detail de la reclamation
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td ><strong>ID</strong></td>
+                                <td>{{ reclamation.getIdRec() }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Destination</strong></td>
+                                <td>{{ reclamation.destination.getNomDest() }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Type</strong></td>
+                                <td>{{ reclamation.typeRec }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Description</strong></td>
+                                <td>{{ reclamation.DescriptionRec }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Etat</strong></td>
+                                {% if reclamation.EtatRec == "En attente" %}
+                                    <td><label class="badge badge-warning">En attente</label></td>
+                                {% elseif reclamation.EtatRec == "InValide" %}
+                                <td><label class="badge badge-danger">InValide</label></td>
+                                {% elseif reclamation.EtatRec == "Treated" %}
+                                <td><label class="badge badge-success">Treated</label></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td><strong>Flag</strong></td>
+                                {% if reclamation.Flag == 0 %}
+                                    <td><i class="mdi mdi-flag-outline" ><strong>Not Important</strong></i>
+                                </td>
+                                {% elseif reclamation.Flag == 1 %}
+                                    <td><p class="mdi mdi-flag-variant" style="color: #832226"><strong>Important</strong></p>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td><strong>Fichier joint</strong></td>
+                                {% if reclamation.File == NULL %}
+                                    <td><i class="mdi mdi-close"></i></td>
+                                {% else %}
+                                    <td><a href="Uploads/{{ reclamation.File }}">see</a></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td><strong>Traitement</strong></td>
+                                <td>
+                                    <a href="{{ path('reclamation_valide', {"id": reclamation.getIdRec()}) }}"><i class="btn btn-inverse-success btn-fw" style="color:mediumseagreen">Validate</i></a>
+                                    <a href="{{ path('reclamation_novalide', {"id": reclamation.getIdRec()}) }}"><i class="btn btn-inverse-danger btn-fw" style="color:red">Invalid</i></a>
+                                    {% if reclamation.Flag == 0 %}
+                                    <a href="{{ path('reclamation_flag', {"id": reclamation.getIdRec()}) }}"><i class="mdi mdi-flag-variant" style="color:red">flag</i></a>
+                                    {% elseif reclamation.Flag == 1 %}
+                                    <a href="{{ path('reclamation_unflag', {"id": reclamation.getIdRec()}) }}"><i class="mdi mdi-flag-outline" style="color:mediumseagreen">unflag</i></a>
+                                    {% endif %}
+                                    <a href="{{ path('reclamation_pdf', {"id": reclamation.getIdRec()}) }}"><i class="btn btn-inverse-success btn-fw" style="color:mediumseagreen">Pdf</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="{{ path('reclamation') }}"><i class="btn btn-inverse-success btn-fw" style="color:mediumseagreen">Retour</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

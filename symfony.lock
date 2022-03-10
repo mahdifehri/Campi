@@ -1,6 +1,12 @@
 {
+    "bacon/bacon-qr-code": {
+        "version": "2.0.6"
+    },
     "cmen/google-charts-bundle": {
         "version": "5.0.0"
+    },
+    "dasprid/enum": {
+        "version": "1.0.3"
     },
     "doctrine/annotations": {
         "version": "1.13",
@@ -88,6 +94,15 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "endroid/installer": {
+        "version": "1.4.0"
+    },
+    "endroid/qr-code": {
+        "version": "4.4.7"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.0.7"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -99,6 +114,9 @@
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "mercuryseries/flashy-bundle": {
+        "version": "v3.0.0"
     },
     "monolog/monolog": {
         "version": "1.26.1"
@@ -236,6 +254,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "snipe/banbuilder": {
+        "version": "dev-master"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.3.0"

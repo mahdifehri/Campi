@@ -50,6 +50,27 @@ class CommandeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/new/{pr}", name="commandeee", methods={"GET", "POST"})
+     */
+    public function newee(Request $request, EntityManagerInterface $entityManager,$pr): Response
+    {
+        $commande = new Commande();
+        $commande->setDateCmd(new \DateTime("now"));
+        $commande->setNumCmd('1');
+        $commande->setTotalCmd($pr);
+
+
+
+            $entityManager->persist($commande);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+
+
+
+    }
+
 
     /**
      * @Route("/{id}", name="commande_show", methods={"GET"})

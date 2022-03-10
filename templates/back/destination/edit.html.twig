@@ -1,0 +1,21 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Modifier destination{% endblock %}
+
+{% block body %}
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"></h4>
+                <p class="card-description"> Modifier cette destination </p>
+                {{ form_start(form) }}
+
+                {{ include('back/destination/_form.html.twig') }}
+                <!-- <button type="submit" class="btn btn-success">Submit</button>
+                <button class="btn btn-dark">Cancel</button>-->
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+{% endblock %}

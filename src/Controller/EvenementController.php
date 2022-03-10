@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class EvenementController extends AbstractController
@@ -52,16 +53,17 @@ class EvenementController extends AbstractController
      * @param EvenementRepository $evenementRepository
      * @return Response
      */
-    public function mesevenements(Request $request,EvenementRepository $evenementRepository): Response
+    public function mesevenements(Request $request,EvenementRepository $evenementRepository,UserInterface $user): Response
     {
-        $iduser=1;
         $evenement = new Evenement();
+        $username=$user->getPassword();
+        $em=$this->getDoctrine()->getManager();
+        $userr = $em->getRepository(User::class)->findOneBy(["password"=>$username]);
         $form= $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
-        {  $em=$this->getDoctrine()->getManager();
-            $user = $em->getRepository(User::class)->findOneBy(["id"=>$iduser]);
-            $evenement->setUsers($user);
+        {
+            $evenement->setUsers($userr);
             $em =$this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
@@ -69,7 +71,7 @@ class EvenementController extends AbstractController
 
         return $this->render('evenement/mesevenements.html.twig', [
             "form"=>$form->createView(),
-            "evenements"=>  $evenementRepository->findBy(["users"=>$iduser]),
+            "evenements"=>  $evenementRepository->findBy(["users"=>$userr]),
         ]);
     }
 
@@ -81,14 +83,16 @@ class EvenementController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function show (Evenement $evenement,ParticipantRepository $participantRepository,Request $request): Response
-    {   $iduser=1;
+    public function show (Evenement $evenement,ParticipantRepository $participantRepository,Request $request,UserInterface $user): Response
+    {   //$iduser=1;
         $participant = new Participant();
         $em=$this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->findOneBy(["id"=>$iduser]);
+        $username=$user->getPassword();
+        $userr = $em->getRepository(User::class)->findOneBy(["password"=>$username]);
+        //$user = $em->getRepository(User::class)->findOneBy(["id"=>$iduser]);
         $form= $this->createForm(ParticipantType::class, $participant);
         $form->handleRequest($request);
-        $participant->setUsers($user);
+        $participant->setUsers($userr);
         $participant->setEvenements($evenement);
         if($form->isSubmitted() && $form->isValid())
         {

@@ -1,0 +1,54 @@
+    <h4 class="card-title">Reclamation</h4>
+    <p class="card-description"> Detail de la reclamation
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td ><strong>ID</strong></td>
+                <td>{{ reclamation.getIdRec() }}</td>
+            </tr>
+            <tr>
+                <td ><strong>Destination</strong></td>
+                <td>{{ reclamation.destination.getNomDest() }}</td>
+            </tr>
+            <tr>
+                <td><strong>Type</strong></td>
+                <td>{{ reclamation.typeRec }}</td>
+            </tr>
+            <tr>
+                <td><strong>Description</strong></td>
+                <td>{{ reclamation.DescriptionRec }}</td>
+            </tr>
+            <tr>
+                <td><strong>Etat</strong></td>
+                {% if reclamation.EtatRec == "En attente" %}
+                    <td><label class="badge badge-warning">En attente</label></td>
+                {% elseif reclamation.EtatRec == "InValide" %}
+                    <td><label class="badge badge-danger">InValide</label></td>
+                {% elseif reclamation.EtatRec == "Treated" %}
+                    <td><label class="badge badge-success">Treated</label></td>
+                {% endif %}
+
+            </tr>
+            <tr>
+                <td><strong>Flag</strong></td>
+                {% if reclamation.Flag == 0 %}
+                    <td><i class="mdi mdi-flag-outline" ><strong>Not Important</strong></i>
+                    </td>
+                {% elseif reclamation.Flag == 1 %}
+                    <td><p class="mdi mdi-flag-variant" style="color: #832226"><strong>Important</strong></p>
+                    </td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><strong>Fichier joint</strong></td>
+                {% if reclamation.File == NULL %}
+                    <td><i class="mdi mdi-close"></i></td>
+                {% else %}
+                    <td>{{ reclamation.File }}</td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+    </div>

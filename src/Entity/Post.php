@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Array_;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -24,6 +28,11 @@ class Post
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="le contenu est necessaire")
+     * @Assert\Length(
+     *      min = 1,
+     *      minMessage = "Your post must be at least {{ limit }} characters long",
+     * )
      */
     private $contenu;
 
@@ -46,6 +55,25 @@ class Post
      * @ORM\Column(type="integer", nullable=true)
      */
     private $etat;
+
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="le titre est necessaire")
+     */
+    private $titre;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="posts", orphanRemoval=true)
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -123,4 +151,49 @@ class Post
 
         return $this;
     }
+
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(?string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setPosts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getPosts() === $this) {
+                $commentaire->setPosts(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

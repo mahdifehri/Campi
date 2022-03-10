@@ -29,10 +29,8 @@ class ProduitController extends AbstractController
     /**
      * @Route("/produit", name="produit")
      */
-    public function index(ProduitRepository $produitRepository,Request $request,PaginatorInterface $paginator): Response
+    public function index(ProduitRepository $produitRepository,Request $request): Response
     {
-
-
         $data = new SearchData();
         $form = $this->createForm(\App\Form\SearchType::class,$data);
         $form->handleRequest($request);
@@ -108,6 +106,14 @@ class ProduitController extends AbstractController
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($produit->getImage()== "")
+                $produit->setImage("no_image.jpg");
+            else{
+                $file=new File($produit->getImage());
+                $fileName=md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_directory'),$fileName);
+                $produit->setImage($fileName);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
@@ -131,7 +137,7 @@ class ProduitController extends AbstractController
         $em->remove($produit);
         $em->flush();
 
-        return $this->redirectToRoute("front_prod");
+        return $this->redirectToRoute("produit");
     }
     /**
      * @Route("/produit/recherche", name="recherche_prod")
@@ -205,4 +211,6 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/stats.html.twig', array('piechart' => $pieChart));
     }
+
+
 }
