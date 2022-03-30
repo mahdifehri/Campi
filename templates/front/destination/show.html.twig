@@ -31,28 +31,16 @@
                                 <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                             </p>
                             <h2>{{ destination.nomDest }}</h2>
-                            <div class="col-lg-4" style="margin-left: auto;margin-right: auto">
-                                <div class="total-section">
-                                    <table class="total-table">
-                                        <thead>
-                                        <tr>
-                                            <th> Nom </th>
-                                            <th> Localisation </th>
-                                            <th> Nombre de participants </th>
-                                            <th> Nombre d'evennements</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td> {{ destination.nomDest }} </td>
-                                            <td> {{ destination.localisationDest }}</td>
-                                            <td> {{ destination.nbrPartDest }} </td>
-                                            <td> {{ destination.eventDest }} </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+
+
+
+
+                                            <h5> Localisation </h5>
+                                            <p> <strong>{{ destination.localisationDest }}</strong></p>
+                                            <h5> Nombre de participants </h5>
+                                            <p><strong> {{ destination.nbrPartDest }} </strong></p>
+                                            <h5> Nombre d'evennements</h5>
+                                            <p> <strong>{{ destination.eventDest }}</strong> </p>
                         </div>
                     </div>
                 </div>

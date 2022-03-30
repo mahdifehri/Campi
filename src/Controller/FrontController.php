@@ -29,7 +29,7 @@ class FrontController extends AbstractController
             'produits' => $paginator->paginate(
                 $produit,
                 $request->query->getInt('page', 1),
-                2
+                6
             ),
             'form'=> $form->createView()
         ]);
